@@ -26,6 +26,22 @@
 </head>
 <body>
 
+  <!-- ===================== MENÚ DE NAVEGACIÓN ===================== -->
+  <nav class="site-nav" id="site-nav">
+    <div class="site-nav__inner">
+      <a class="site-nav__logo" href="#hero" aria-label="Inicio — 3G Consultoría">
+        <img src="assets/3G_logo_icono.png" alt="3G Consultoría">
+      </a>
+      <ul class="site-nav__links">
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="packs.html">Packs</a></li>
+        <li><a href="#quienes-somos">Nosotros</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <!-- ===================== HERO ===================== -->
   <header class="hero" id="hero">
     <div class="blob blob--coral" aria-hidden="true"></div>
@@ -34,20 +50,16 @@
 
     <div class="hero__content reveal">
       <div class="hero__logo-lockup">
-        <svg class="hero__logo-icon" viewBox="0 0 240 220" aria-hidden="true">
-          <circle cx="90" cy="90" r="70" fill="none" stroke="#D85A30" stroke-width="8"/>
-          <circle cx="150" cy="90" r="70" fill="none" stroke="#215C60" stroke-width="8"/>
-          <circle cx="120" cy="140" r="70" fill="none" stroke="#BA7517" stroke-width="8"/>
-        </svg>
+        <img class="hero__logo-icon" src="assets/3G_logo_icono.png" alt="3G Consultoría">
         <div class="hero__logo-text">
           <span class="hero__logo-3g">3G</span>
-          <span class="hero__logo-name">CONSULTORÍA</span>
+          <span class="hero__logo-name">TRES GENERACIONES</span>
           <span class="hero__logo-tagline">DISEÑO · TECNOLOGÍA · CONSULTORÍA</span>
         </div>
       </div>
 
       <h1 class="hero__title">Tú sueñas.<br>Nosotros lo hacemos realidad.</h1>
-      <p class="hero__subtitle">Diseño, tecnología y consultoría — tres generaciones detrás de cada proyecto.</p>
+      <p class="hero__subtitle">Diseño, consultoría y tecnología<br>Tres generaciones detrás de cada proyecto</p>
 
       <a
         class="btn btn--whatsapp"
@@ -61,23 +73,96 @@
     </div>
   </header>
 
-  <!-- ===================== SERVICIOS ===================== -->
-  <section class="services" id="servicios">
-    <div class="services__grid">
+  <!-- ===================== PACKS Y PROMOCIÓN ===================== -->
+  <section class="packs" id="packs-promocion">
+    <div class="blob blob--dorado blob--faint blob--small" aria-hidden="true"></div>
+    <div class="blob blob--petroleo blob--faint" aria-hidden="true"></div>
 
-      <article class="card card--coral reveal">
-        <h3 class="card__title">Diseño</h3>
-        <p class="card__text">Identidad de marca, branding y piezas gráficas que hacen que tu negocio se reconozca de un vistazo.</p>
+    <div class="packs__banner reveal">
+      <p class="packs__banner-text">
+        <span class="packs__banner-emoji" aria-hidden="true">🔥</span>
+        50% DESCUENTO sobre el precio de lanzamiento de los 3 packs — <span class="packs__banner-highlight">Promoción por tiempo limitado</span>
+      </p>
+    </div>
+
+    <div class="divider" aria-hidden="true">
+      <span class="divider__dot divider__dot--coral"></span>
+      <span class="divider__dot divider__dot--petroleo"></span>
+      <span class="divider__dot divider__dot--dorado"></span>
+    </div>
+
+    <div class="packs__grid">
+
+      <article class="pack-card pack-card--impulso reveal">
+        <h3 class="pack-card__name">Pack Impulso</h3>
+        <div class="pack-card__price">
+          <span class="pack-card__price-old">598€</span>
+          <span class="pack-card__price-new">299€</span>
+        </div>
+        <ul class="pack-card__list">
+          <li>Landing de una página, máx. 4 secciones</li>
+          <li>Botón de WhatsApp + enlaces a redes sociales + formulario de contacto/reserva básico</li>
+          <li>Google Business Profile incluido</li>
+          <li>Dominio + hosting 1er año incluido</li>
+          <li>2 cambios incluidos durante el año + soporte por fallos</li>
+        </ul>
+        <div class="pack-card__actions">
+          <a href="packs.html#pack-impulso-detalle" class="btn btn--outline">Más info</a>
+          <a
+            class="btn btn--whatsapp-sm"
+            href="https://wa.me/34611871937?text=Hola%2C%20me%20interesa%20el%20Pack%20Impulso"
+            target="_blank"
+            rel="noopener"
+          >Me interesa</a>
+        </div>
       </article>
 
-      <article class="card card--petroleo reveal">
-        <h3 class="card__title">Tecnología</h3>
-        <p class="card__text">Webs y desarrollo a medida, pensados para que tu negocio funcione, no solo que se vea bien.</p>
+      <article class="pack-card pack-card--avanza reveal">
+        <h3 class="pack-card__name">Pack Avanza</h3>
+        <div class="pack-card__price">
+          <span class="pack-card__price-old">998€</span>
+          <span class="pack-card__price-new">499€</span>
+        </div>
+        <ul class="pack-card__list">
+          <li>Landing o páginas separadas, máx. 7 secciones/pestañas</li>
+          <li>Todo lo de Impulso + gestión de stock básica (o base de datos pequeña), carga inicial de 20-30 ítems</li>
+          <li>Google Business Profile incluido</li>
+          <li>Dominio + hosting 1er año incluido</li>
+          <li>3 cambios incluidos durante el año + soporte por fallos</li>
+        </ul>
+        <div class="pack-card__actions">
+          <a href="packs.html#pack-avanza-detalle" class="btn btn--outline">Más info</a>
+          <a
+            class="btn btn--whatsapp-sm"
+            href="https://wa.me/34611871937?text=Hola%2C%20me%20interesa%20el%20Pack%20Avanza"
+            target="_blank"
+            rel="noopener"
+          >Me interesa</a>
+        </div>
       </article>
 
-      <article class="card card--dorado reveal">
-        <h3 class="card__title">Consultoría</h3>
-        <p class="card__text">Estrategia y acompañamiento real en cada fase del negocio, desde la idea hasta el día a día.</p>
+      <article class="pack-card pack-card--elite reveal">
+        <h3 class="pack-card__name">Pack Elite</h3>
+        <div class="pack-card__price">
+          <span class="pack-card__price-old">Desde 1.598€</span>
+          <span class="pack-card__price-new">Desde 799€</span>
+        </div>
+        <ul class="pack-card__list">
+          <li>Pestañas ilimitadas</li>
+          <li>Todo lo de Avanza + carrito de compra integrado + CRM básico de gestión de stock + base de datos de clientes, carga inicial de 50-100 ítems</li>
+          <li>Google Business Profile incluido</li>
+          <li>Dominio + hosting 1er año incluido</li>
+          <li>4 cambios incluidos durante el año + soporte por fallos</li>
+        </ul>
+        <div class="pack-card__actions">
+          <a href="packs.html#pack-elite-detalle" class="btn btn--outline">Más info</a>
+          <a
+            class="btn btn--whatsapp-sm"
+            href="https://wa.me/34611871937?text=Hola%2C%20me%20interesa%20el%20Pack%20Elite"
+            target="_blank"
+            rel="noopener"
+          >Me interesa</a>
+        </div>
       </article>
 
     </div>
@@ -97,6 +182,37 @@
         <h2 class="about__title">No es una <span class="about__title-white">agencia</span>. Son <span class="about__title-accent">3 generaciones detrás de cada proyecto</span>.</h2>
         <p class="about__text">Abuelo, madre e hijo asesorando, desarrollando y diseñando negocios como el tuyo. Un solo servicio, dos combinados, o gestión completa — tú decides cuánto necesitas.</p>
       </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true">
+    <span class="divider__dot divider__dot--coral"></span>
+    <span class="divider__dot divider__dot--petroleo"></span>
+    <span class="divider__dot divider__dot--dorado"></span>
+  </div>
+
+  <!-- ===================== SERVICIOS ===================== -->
+  <section class="services" id="servicios">
+    <div class="blob blob--petroleo blob--faint blob--small" aria-hidden="true"></div>
+    <div class="blob blob--coral blob--faint" aria-hidden="true"></div>
+
+    <div class="services__grid">
+
+      <article class="card card--coral reveal">
+        <h3 class="card__title">Diseño</h3>
+        <p class="card__text">Identidad de marca, branding y piezas gráficas que hacen que tu negocio se reconozca de un vistazo.</p>
+      </article>
+
+      <article class="card card--petroleo reveal">
+        <h3 class="card__title">Tecnología</h3>
+        <p class="card__text">Webs y desarrollo a medida, pensados para que tu negocio funcione, no solo que se vea bien.</p>
+      </article>
+
+      <article class="card card--dorado reveal">
+        <h3 class="card__title">Consultoría</h3>
+        <p class="card__text">Estrategia y acompañamiento real en cada fase del negocio, desde la idea hasta el día a día.</p>
+      </article>
+
     </div>
   </section>
 
@@ -134,6 +250,12 @@
     </div>
   </section>
 
+  <div class="divider" aria-hidden="true">
+    <span class="divider__dot divider__dot--coral"></span>
+    <span class="divider__dot divider__dot--petroleo"></span>
+    <span class="divider__dot divider__dot--dorado"></span>
+  </div>
+
   <!-- ===================== CTA FINAL ===================== -->
   <section class="cta-final" id="contacto">
     <div class="blob blob--petroleo blob--small" aria-hidden="true"></div>
@@ -167,6 +289,7 @@
       </div>
     </div>
     <p class="footer__tagline">Diseño · Tecnología · Consultoría</p>
+    <p class="footer__legal">Web desarrollada por 3G Tres Generaciones. Todos los derechos reservados.</p>
   </footer>
 
   <!-- ===================== BOTÓN FLOTANTE (móvil) ===================== -->
