@@ -379,7 +379,7 @@ section {
 }
 
 .hero__logo-icon {
-  width: 172px;
+  width: 208px;
   height: auto;
 }
 
@@ -411,15 +411,15 @@ section {
 }
 
 @media (max-width: 600px) {
-  .hero__logo-icon { width: 126px; }
+  .hero__logo-icon { width: 152px; }
   .hero__logo-3g { font-size: 32px; }
   .hero__logo-name { font-size: 16px; }
   .hero__logo-tagline { font-size: 10px; }
 }
 
 .hero__title {
-  font-size: clamp(2rem, 7vw, 3.4rem);
-  line-height: 1.1;
+  font-size: clamp(1.6rem, 5.5vw, 2.7rem);
+  line-height: 1.15;
 }
 
 .hero__subtitle {
