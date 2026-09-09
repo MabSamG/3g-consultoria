@@ -354,7 +354,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 100px 20px 80px;
+  padding: 70px 20px 80px;
   position: relative;
   overflow: hidden;
 }
@@ -374,7 +374,7 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
   margin: 0 auto 48px auto;
 }
 
