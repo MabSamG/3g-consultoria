@@ -217,8 +217,8 @@ section {
 }
 
 .site-nav__logo img {
-  width: 36px;
-  height: 36px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   display: block;
 }
@@ -265,8 +265,8 @@ section {
   }
 
   .site-nav__logo img {
-    width: 30px;
-    height: 30px;
+    width: 38px;
+    height: 38px;
   }
 
   .site-nav__links {
@@ -712,6 +712,104 @@ section {
 .back-link:focus-visible {
   color: var(--text-primary);
 }
+
+/* ============================================================
+   PROYECTOS
+   ============================================================ */
+.projects {
+  padding: 20px 20px 90px;
+  overflow: hidden;
+}
+
+.projects__grid {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+@media (min-width: 768px) {
+  .projects__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.project-card {
+  background: var(--card-bg);
+  color: var(--bg-dark);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border-top: 8px solid transparent;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 48px rgba(0, 0, 0, 0.3);
+}
+
+.project-card--coral { border-top-color: var(--coral); }
+.project-card--petroleo { border-top-color: var(--petroleo); }
+.project-card--dorado { border-top-color: var(--dorado); }
+
+.project-card__image {
+  background: var(--bg-dark);
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.project-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-card__image img {
+  transform: scale(1.04);
+}
+
+.project-card__body {
+  padding: 28px 26px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.project-card__name {
+  font-size: 1.3rem;
+}
+
+.project-card--coral .project-card__name { color: var(--coral); }
+.project-card--petroleo .project-card__name { color: var(--petroleo); }
+.project-card--dorado .project-card__name { color: var(--dorado); }
+
+.project-card__text {
+  color: #4a4a47;
+  font-size: 0.98rem;
+  text-transform: none;
+  font-weight: 400;
+  flex: 1;
+}
+
+.project-card__cta {
+  align-self: flex-start;
+  margin-top: 6px;
+  padding: 13px 26px;
+  font-size: 0.92rem;
+}
+
+.project-card--coral .btn--outline { color: var(--coral); }
+.project-card--petroleo .btn--outline { color: var(--petroleo); }
+.project-card--dorado .btn--outline { color: var(--dorado); }
 
 /* ---------- Detalle ampliado de cada pack ---------- */
 .packs__details {
