@@ -419,26 +419,6 @@ section {
   color: var(--coral);
 }
 
-.site-nav__subitem-disabled {
-  padding: 9px 12px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-secondary);
-  opacity: 0.55;
-  cursor: default;
-}
-
-.site-nav__soon {
-  display: block;
-  font-size: 0.62rem;
-  font-weight: 500;
-  text-transform: none;
-  letter-spacing: 0;
-  margin-top: 2px;
-}
-
 /* ---------- Botón WhatsApp ---------- */
 .btn {
   display: inline-flex;
@@ -687,9 +667,9 @@ section {
 
 .packs__banner-financing {
   color: #FFFFFF;
-  opacity: 0.9;
-  font-size: clamp(0.85rem, 2vw, 0.98rem);
-  font-weight: 500;
+  opacity: 0.95;
+  font-size: clamp(1rem, 2.3vw, 1.1rem);
+  font-weight: 600;
   text-transform: none;
   letter-spacing: 0;
   margin-top: 8px;
