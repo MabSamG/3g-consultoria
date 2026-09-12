@@ -40,10 +40,18 @@
             <svg viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <ul class="site-nav__submenu">
-            <li><a href="/packs/impulso.html">Impulso</a></li>
-            <li><a href="/packs/avanza.html">Avanza</a></li>
-            <li><a href="/packs/elite.html">Elite</a></li>
-            <li><a href="/packs/index.html">Ver todos</a></li>
+            <li class="site-nav__subgroup">
+              <button type="button" class="site-nav__subgroup-toggle" aria-expanded="false">
+                Colombia
+                <svg class="site-nav__subgroup-caret" viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <ul class="site-nav__subsubmenu">
+                <li><a href="/packs/impulso.html">Impulso</a></li>
+                <li><a href="/packs/avanza.html">Avanza</a></li>
+                <li><a href="/packs/elite.html">Elite</a></li>
+              </ul>
+            </li>
+            <li class="site-nav__subitem-disabled">España <span class="site-nav__soon">Próximamente</span></li>
           </ul>
         </li>
         <li><a href="proyectos.html">Proyectos</a></li>
@@ -72,8 +80,9 @@
     <div class="packs__banner reveal">
       <p class="packs__banner-text">
         <span class="packs__banner-emoji" aria-hidden="true">🔥</span>
-        50% DESCUENTO sobre el precio de lanzamiento de los 3 packs — <span class="packs__banner-highlight">Promoción por tiempo limitado</span>
+        50% DESCUENTO sobre el precio de lanzamiento de los 3 planes — <span class="packs__banner-highlight">Promoción por tiempo limitado</span>
       </p>
+      <p class="packs__banner-financing">Financiación subvencionada a 1 año sin intereses</p>
     </div>
 
     <div class="divider" aria-hidden="true">

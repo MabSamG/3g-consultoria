@@ -67,9 +67,20 @@ document.querySelectorAll('.site-nav__item--dropdown').forEach((item) => {
     caret.setAttribute('aria-expanded', 'true');
   };
 
+  // Colapsa también cualquier sub-grupo abierto (p. ej. "Colombia")
+  // para que el desplegable vuelva a su estado inicial al cerrarse.
+  const closeSubgroups = () => {
+    item.querySelectorAll('.site-nav__subgroup.is-open').forEach((group) => {
+      group.classList.remove('is-open');
+      const toggle = group.querySelector('.site-nav__subgroup-toggle');
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    });
+  };
+
   const closeDropdown = () => {
     item.classList.remove('is-open');
     caret.setAttribute('aria-expanded', 'false');
+    closeSubgroups();
   };
 
   const scheduleClose = () => {
@@ -109,4 +120,17 @@ document.querySelectorAll('.site-nav__item--dropdown').forEach((item) => {
 
   window.addEventListener('resize', closeDropdown);
   window.addEventListener('scroll', closeDropdown, { passive: true });
+
+  // Sub-grupo "Colombia": acordeón dentro del propio panel, sin
+  // necesidad de un segundo nivel de position:fixed.
+  item.querySelectorAll('.site-nav__subgroup').forEach((group) => {
+    const groupToggle = group.querySelector('.site-nav__subgroup-toggle');
+    if (!groupToggle) return;
+
+    groupToggle.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const isOpen = group.classList.toggle('is-open');
+      groupToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
 });
