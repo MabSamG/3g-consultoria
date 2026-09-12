@@ -34,7 +34,18 @@
       </a>
       <ul class="site-nav__links">
         <li><a href="index.html#hero">Inicio</a></li>
-        <li><a href="/packs/index.html">Packs</a></li>
+        <li class="site-nav__item site-nav__item--dropdown">
+          <a href="/packs/index.html">Packs</a>
+          <button type="button" class="site-nav__caret" aria-expanded="false" aria-label="Mostrar los packs">
+            <svg viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="site-nav__submenu">
+            <li><a href="/packs/impulso.html">Impulso</a></li>
+            <li><a href="/packs/avanza.html">Avanza</a></li>
+            <li><a href="/packs/elite.html">Elite</a></li>
+            <li><a href="/packs/index.html">Ver todos</a></li>
+          </ul>
+        </li>
         <li><a href="proyectos.html">Proyectos</a></li>
         <li><a href="index.html#quienes-somos">Nosotros</a></li>
         <li><a href="index.html#servicios">Servicios</a></li>

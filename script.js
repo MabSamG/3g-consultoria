@@ -35,3 +35,33 @@ if (stickyWhatsapp && ctaFinal) {
 
   ctaObserver.observe(ctaFinal);
 }
+
+// Desplegable "Packs" del menú: se abre con hover/foco (CSS) y también
+// con tap/click en el botón de flecha, para que funcione en móvil.
+document.querySelectorAll('.site-nav__item--dropdown').forEach((item) => {
+  const caret = item.querySelector('.site-nav__caret');
+  if (!caret) return;
+
+  const closeDropdown = () => {
+    item.classList.remove('is-open');
+    caret.setAttribute('aria-expanded', 'false');
+  };
+
+  caret.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const isOpen = item.classList.toggle('is-open');
+    caret.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!item.contains(event.target)) {
+      closeDropdown();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeDropdown();
+    }
+  });
+});
