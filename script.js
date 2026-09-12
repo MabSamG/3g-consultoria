@@ -36,21 +36,63 @@ if (stickyWhatsapp && ctaFinal) {
   ctaObserver.observe(ctaFinal);
 }
 
-// Desplegable "Packs" del menú: se abre con hover/foco (CSS) y también
-// con tap/click en el botón de flecha, para que funcione en móvil.
+// Desplegable "Packs" del menú.
+// El submenú es position:fixed (para no quedar recortado por el
+// overflow-x:auto de .site-nav__links) así que su posición se calcula
+// en JS a partir del <li> que lo contiene. Se abre con hover/foco en
+// escritorio y con tap en el botón de flecha en móvil.
 document.querySelectorAll('.site-nav__item--dropdown').forEach((item) => {
   const caret = item.querySelector('.site-nav__caret');
-  if (!caret) return;
+  const submenu = item.querySelector('.site-nav__submenu');
+  if (!caret || !submenu) return;
+
+  let closeTimer = null;
+
+  const positionSubmenu = () => {
+    const itemRect = item.getBoundingClientRect();
+    submenu.style.top = `${itemRect.bottom + 10}px`;
+
+    const menuWidth = submenu.offsetWidth;
+    const maxLeft = window.innerWidth - menuWidth - 12;
+    submenu.style.left = `${Math.max(12, Math.min(itemRect.left, maxLeft))}px`;
+  };
+
+  const openDropdown = () => {
+    if (closeTimer) {
+      clearTimeout(closeTimer);
+      closeTimer = null;
+    }
+    positionSubmenu();
+    item.classList.add('is-open');
+    caret.setAttribute('aria-expanded', 'true');
+  };
 
   const closeDropdown = () => {
     item.classList.remove('is-open');
     caret.setAttribute('aria-expanded', 'false');
   };
 
+  const scheduleClose = () => {
+    closeTimer = setTimeout(closeDropdown, 150);
+  };
+
+  item.addEventListener('mouseenter', openDropdown);
+  item.addEventListener('mouseleave', scheduleClose);
+
+  item.addEventListener('focusin', openDropdown);
+  item.addEventListener('focusout', (event) => {
+    if (!item.contains(event.relatedTarget)) {
+      closeDropdown();
+    }
+  });
+
   caret.addEventListener('click', (event) => {
     event.stopPropagation();
-    const isOpen = item.classList.toggle('is-open');
-    caret.setAttribute('aria-expanded', String(isOpen));
+    if (item.classList.contains('is-open')) {
+      closeDropdown();
+    } else {
+      openDropdown();
+    }
   });
 
   document.addEventListener('click', (event) => {
@@ -64,4 +106,7 @@ document.querySelectorAll('.site-nav__item--dropdown').forEach((item) => {
       closeDropdown();
     }
   });
+
+  window.addEventListener('resize', closeDropdown);
+  window.addEventListener('scroll', closeDropdown, { passive: true });
 });
