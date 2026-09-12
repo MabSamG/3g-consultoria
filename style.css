@@ -540,6 +540,20 @@ section {
   }
 }
 
+.packs__grid--single {
+  grid-template-columns: 1fr;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.packs__grid--single .card {
+  text-align: center;
+}
+
+.packs__grid--single .card .btn {
+  margin-top: 22px;
+}
+
 .pack-card {
   background: var(--card-bg);
   color: var(--bg-dark);

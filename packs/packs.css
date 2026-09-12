@@ -1,0 +1,127 @@
+/* =========================================================
+   3G Consultoría — Packs (landings individuales + overview)
+   Extiende ../style.css: mismos tokens de color, tipografía y
+   radios. Solo añade los componentes que no existían ya en el
+   sitio (financiación, precio en COP, lista de funcionalidades
+   con destacadas, y CTA final de doble botón).
+   ========================================================= */
+
+/* ---------- Banner de promoción: línea de financiación ---------- */
+.plan-banner__financing {
+  color: #FFFFFF;
+  opacity: 0.9;
+  font-size: clamp(0.85rem, 2vw, 0.98rem);
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-top: 8px;
+}
+
+/* ---------- Precio: equivalente en COP ---------- */
+.plan-price__cop {
+  font-size: 0.55em;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* ---------- Tarjetas del overview: cuota mensual ---------- */
+.plan-card__monthly {
+  font-size: 0.85rem;
+  color: #6a6a66;
+  text-transform: none;
+  font-weight: 500;
+  margin-top: -8px;
+}
+
+/* ---------- Lista de funcionalidades incluidas ---------- */
+.plan-features {
+  list-style: none;
+  margin: 0 0 32px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 640px) {
+  .plan-features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.plan-features__item {
+  position: relative;
+  background: rgba(245, 245, 243, 0.05);
+  border: 1px solid rgba(245, 245, 243, 0.1);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+}
+
+.plan-features__item--highlight {
+  background: rgba(255, 45, 107, 0.08);
+  border-color: var(--promo);
+}
+
+.plan-features__badge {
+  display: inline-block;
+  background: var(--promo);
+  color: #FFFFFF;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.plan-features__title {
+  font-size: 1rem;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.pack-detail--impulso .plan-features__title { color: var(--coral); }
+.pack-detail--avanza .plan-features__title { color: var(--petroleo); }
+.pack-detail--elite .plan-features__title { color: var(--dorado); }
+
+.plan-features__text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-transform: none;
+  font-weight: 400;
+}
+
+/* ---------- Encabezado de sección dentro del detalle ---------- */
+.plan-section-title {
+  font-size: clamp(1.15rem, 3vw, 1.4rem);
+  margin-bottom: 18px;
+  color: var(--text-primary);
+}
+
+/* ---------- CTA final de la landing (doble botón) ---------- */
+.plan-cta {
+  text-align: center;
+}
+
+.plan-cta__title {
+  font-size: clamp(1.2rem, 3.2vw, 1.6rem);
+  margin-bottom: 22px;
+  color: var(--text-primary);
+}
+
+.plan-cta__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+@media (min-width: 480px) {
+  .plan-cta__actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
