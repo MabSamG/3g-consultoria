@@ -1,0 +1,189 @@
+/* ============================================================
+   agente.css
+   Estilos del Agente IA (widget flotante de preguntas y
+   respuestas predefinidas). Usa variables CSS para que sea
+   fácil adaptarlo a la paleta real de cada sitio: sobrescribe
+   estas variables en tu propio style.css, o cámbialas aquí.
+   ============================================================ */
+
+:root{
+  --agente-primary: #0e223a;   /* color principal (burbuja, cabecera) */
+  --agente-accent:  #25d366;   /* color de acento (botón lanzador, CTA) */
+  --agente-bg:      #ffffff;   /* fondo del panel de chat */
+  --agente-bubble-bot: #f1f5f9;
+  --agente-text:    #111827;
+  --agente-text-soft: #475569;
+  --agente-radius: 16px;
+}
+
+#agente-launcher{
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: var(--agente-accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: transform .15s ease;
+}
+#agente-launcher:hover{ transform: scale(1.06); }
+#agente-launcher svg{ width: 28px; height: 28px; }
+
+#agente-panel{
+  position: fixed;
+  bottom: 96px;
+  right: 22px;
+  width: 340px;
+  max-width: calc(100vw - 32px);
+  max-height: 70vh;
+  background: var(--agente-bg);
+  border-radius: var(--agente-radius);
+  box-shadow: 0 12px 40px rgba(0,0,0,.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+  font-family: inherit;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+#agente-panel.open{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+#agente-header{
+  background: var(--agente-primary);
+  color: #fff;
+  padding: 16px 18px;
+  display:flex; align-items:center; justify-content:space-between;
+  flex-shrink: 0;
+}
+#agente-header .title{ font-weight: 700; font-size: .98rem; }
+#agente-header .subtitle{ font-size: .78rem; color: #c9d3e2; margin-top:2px; }
+#agente-close{
+  background: transparent; border: none; color: #fff;
+  font-size: 1.3rem; line-height: 1; cursor: pointer; opacity:.85;
+}
+#agente-close:hover{ opacity: 1; }
+
+#agente-body{
+  padding: 16px 18px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.agente-bubble{
+  background: var(--agente-bubble-bot);
+  color: var(--agente-text);
+  padding: 12px 14px;
+  border-radius: 12px;
+  border-top-left-radius: 4px;
+  font-size: .92rem;
+  line-height: 1.45;
+  max-width: 92%;
+}
+.agente-bubble.user{
+  background: var(--agente-primary);
+  color: #fff;
+  align-self: flex-end;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 4px;
+}
+
+.agente-options{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+.agente-option-btn{
+  background: #fff;
+  border: 1.5px solid var(--agente-primary);
+  color: var(--agente-primary);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: .88rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+.agente-option-btn:hover{
+  background: var(--agente-primary);
+  color: #fff;
+}
+.agente-option-btn.whatsapp{
+  border-color: var(--agente-accent);
+  color: var(--agente-accent);
+}
+.agente-option-btn.whatsapp:hover{
+  background: var(--agente-accent);
+  color: #fff;
+}
+
+.agente-back-btn{
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: var(--agente-text-soft);
+  font-size: .82rem;
+  cursor: pointer;
+  padding: 6px 0;
+  text-decoration: underline;
+}
+
+#agente-form{
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-top: 1px solid #e5e7eb;
+  background: var(--agente-bg);
+}
+#agente-input{
+  flex: 1;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 10px 14px;
+  font-size: .92rem;
+  font-family: inherit;
+  outline: none;
+  color: var(--agente-text);
+}
+#agente-input:focus{ border-color: var(--agente-primary); }
+#agente-send{
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: var(--agente-accent);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#agente-send:hover{ opacity: .9; }
+
+@media (max-width: 420px){
+  #agente-panel{ right: 16px; left: 16px; width: auto; bottom: 88px; }
+  #agente-launcher{ right: 16px; bottom: 16px; }
+}
