@@ -61,20 +61,27 @@
   // ---------- construir el HTML del widget ----------
   const launcher = document.createElement("button");
   launcher.id = "agente-launcher";
-  launcher.setAttribute("aria-label", "Abrir chat de ayuda");
+  launcher.setAttribute("aria-label", "Abrir Agente Virtual");
   launcher.innerHTML = `
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
         stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>`;
+    </svg>
+    <span>Agente Virtual</span>`;
 
   const panel = document.createElement("div");
   panel.id = "agente-panel";
   panel.innerHTML = `
     <div id="agente-header">
-      <div>
-        <div class="title">${cfg.nombreNegocio || "Asistente"}</div>
-        <div class="subtitle">Respuesta al instante</div>
+      <div id="agente-avatar">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div id="agente-header-text">
+        <div class="title">Asistente Virtual</div>
+        <div class="subtitle"><span class="agente-dot"></span>${cfg.nombreNegocio || ""} · en línea</div>
       </div>
       <button id="agente-close" aria-label="Cerrar chat">&times;</button>
     </div>
@@ -133,7 +140,9 @@
   function renderGreeting(){
     body.innerHTML = "";
     addBubble(cfg.saludo || "¿En qué te puedo ayudar?");
-    addChips(cfg.sugerenciasIniciales || [], { showWhatsapp: false });
+    // Sin chips aquí a propósito: queremos que se sienta conversacional,
+    // que el cliente escriba primero. Las sugerencias aparecen después,
+    // como ayuda tras su primera respuesta (ver handleUserMessage).
   }
 
   function handleUserMessage(text, matchedFaq){
