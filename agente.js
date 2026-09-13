@@ -152,10 +152,17 @@
     const faq = matchedFaq || findBestFaq(text);
 
     if(faq){
+      // Coincidencia encontrada: solo respondemos. Sin volver a
+      // desplegar el menú — que la conversación siga fluyendo.
       addBubble(faq.answer);
-      // ofrece seguir ayudando
-      addChips(cfg.sugerenciasIniciales || [], { showWhatsapp: true });
+      // Excepción: preguntas genéricas ("quiero información", "tengo
+      // una duda"...) sí muestran el menú de temas, porque el propio
+      // mensaje del cliente ya está pidiendo ver las opciones.
+      if(faq.showOptions){
+        addChips(cfg.sugerenciasIniciales || [], { showWhatsapp: false });
+      }
     } else {
+      // Sin coincidencia: aquí sí ayudamos con sugerencias y WhatsApp.
       addBubble(cfg.fallback || "No entendí bien tu pregunta.");
       addChips(cfg.sugerenciasIniciales || [], { showWhatsapp: true });
     }

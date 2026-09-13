@@ -32,6 +32,13 @@ window.AGENTE_CONFIG = {
 
   faqs: [
     {
+      id: "info_general",
+      keywords: ["informacion", "info", "ayuda", "quiero saber", "tengo una duda", "una pregunta", "dudas", "consulta", "necesito ayuda", "puedes ayudarme"],
+      question: "Quiero información",
+      answer: "¡Claro! ¿Sobre qué te gustaría saber más? Aquí tienes algunos temas frecuentes:",
+      showOptions: true
+    },
+    {
       id: "horarios",
       keywords: ["horario", "horarios", "abierto", "atienden", "hora", "cuando atienden", "dias"],
       question: "¿Cuáles son sus horarios?",
