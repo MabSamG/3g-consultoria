@@ -781,7 +781,18 @@ section {
   margin-top: auto;
 }
 
-@media (min-width: 480px) {
+/* Fila de botones en horizontal solo cuando hay sitio real: por debajo
+   de 768px la tarjeta ocupa todo el ancho (1 columna), y desde 992px
+   el grid de 3 columnas ya deja tarjetas suficientemente anchas. Entre
+   768-991px las tarjetas son de ~230px (grid a 3 columnas todavía
+   estrecho) y dos botones en fila se cortaban o partían el texto. */
+@media (min-width: 480px) and (max-width: 767px) {
+  .pack-card__actions {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 992px) {
   .pack-card__actions {
     flex-direction: row;
   }
