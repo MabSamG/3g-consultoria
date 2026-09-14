@@ -82,6 +82,7 @@
       "form-name": "agente-contacto",
       tipo: contact.type,
       dato: contact.value,
+      nombre: "",
       ultima_pregunta: ultimaPregunta || "",
       pagina: window.location.href
     }).toString();
@@ -94,6 +95,36 @@
       // Si falla el envío (sin conexión, etc.) no rompemos la
       // conversación — simplemente no queda registrado ese contacto.
     });
+  }
+
+  // Envío de seguimiento: cuando el cliente da su nombre justo después
+  // de dejar el contacto, se manda como una segunda fila en el mismo
+  // formulario, con el contacto de referencia para poder relacionarlos.
+  function submitNombre(name, contact){
+    const body = new URLSearchParams({
+      "form-name": "agente-contacto",
+      tipo: "nombre",
+      dato: contact ? `${contact.value} → ${name}` : name,
+      nombre: name,
+      ultima_pregunta: "(nombre asociado al contacto anterior)",
+      pagina: window.location.href
+    }).toString();
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body
+    }).catch(() => {});
+  }
+
+  // Heurística simple para saber si un mensaje "parece un nombre":
+  // corto, sin arroba, sin muchos dígitos, sin signos de pregunta.
+  function looksLikeName(text){
+    const t = text.trim();
+    if(!t || t.length > 40) return false;
+    if(t.includes("@") || t.includes("?")) return false;
+    if((t.match(/\d/g) || []).length > 3) return false;
+    return true;
   }
 
   // ---------- construir el HTML del widget ----------
@@ -137,6 +168,8 @@
   const form = panel.querySelector("#agente-form");
   const input = panel.querySelector("#agente-input");
   let lastBotQuestion = ""; // contexto: última pregunta que el bot entendió, para acompañar el lead capturado
+  let awaitingName = false;   // true justo después de capturar un contacto, esperando el nombre
+  let pendingContact = null;  // el contacto ya guardado, para asociarle el nombre si llega
 
   // ---------- render helpers ----------
   function addBubble(text, from){
@@ -188,14 +221,31 @@
     if(!text || !text.trim()) return;
     addBubble(text, "user");
 
+    // Si estábamos esperando un nombre (justo tras capturar un
+    // contacto) y este mensaje parece serlo, lo asociamos y cerramos
+    // ese hilo antes de seguir con cualquier otra cosa.
+    if(awaitingName){
+      awaitingName = false;
+      if(looksLikeName(text)){
+        submitNombre(text.trim(), pendingContact);
+        addBubble(`Encantado, ${text.trim()}. Ya está todo guardado — en breve nos pondremos en contacto contigo.`);
+        addChips([], { showWhatsapp: true });
+        pendingContact = null;
+        return;
+      }
+      // Si no parece un nombre (p. ej. hizo otra pregunta), seguimos
+      // el flujo normal con ese mismo mensaje, sin perderlo.
+    }
+
     // Prioridad 1: ¿el cliente ha dejado un correo o teléfono?
     // Se comprueba siempre, aunque también parezca coincidir con una FAQ.
     if(!matchedFaq){
       const contact = extractContact(text);
       if(contact){
         submitContacto(contact, lastBotQuestion);
-        addBubble(`¡Genial! Ya tengo tu ${contact.type} (${contact.value}). En breve nos pondremos en contacto contigo. Si es urgente, también puedes escribirnos directamente por WhatsApp.`);
-        addChips([], { showWhatsapp: true });
+        pendingContact = contact;
+        awaitingName = true;
+        addBubble(`¡Genial! Ya tengo tu ${contact.type} (${contact.value}). ¿Nos dices también tu nombre, para dirigirnos a ti correctamente?`);
         return;
       }
     }
