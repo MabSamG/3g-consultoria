@@ -58,6 +58,44 @@
     return `https://wa.me/${num}?text=${encodeURIComponent(text || "Hola")}`;
   }
 
+  // ---------- detección de email / teléfono ----------
+  // Nota: esto sigue sin ser IA. Es una expresión regular que busca un
+  // patrón de texto (algo@algo.algo, o una secuencia de dígitos con
+  // pinta de teléfono). No entiende el mensaje, solo reconoce el patrón.
+  const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
+  const PHONE_RE = /(\+?\d[\d\s-]{7,14}\d)/;
+
+  function extractContact(text){
+    const email = text.match(EMAIL_RE);
+    if(email) return { type: "correo", value: email[0] };
+    const phone = text.match(PHONE_RE);
+    if(phone) return { type: "teléfono", value: phone[0].replace(/[\s-]/g, "") };
+    return null;
+  }
+
+  // Envía el contacto al formulario oculto de Netlify (ver el <form
+  // name="agente-contacto" data-netlify="true" hidden> en el HTML).
+  // Netlify guarda esto en el panel "Forms" de tu cuenta — no hace
+  // falta ninguna base de datos propia.
+  function submitContacto(contact, ultimaPregunta){
+    const body = new URLSearchParams({
+      "form-name": "agente-contacto",
+      tipo: contact.type,
+      dato: contact.value,
+      ultima_pregunta: ultimaPregunta || "",
+      pagina: window.location.href
+    }).toString();
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body
+    }).catch(() => {
+      // Si falla el envío (sin conexión, etc.) no rompemos la
+      // conversación — simplemente no queda registrado ese contacto.
+    });
+  }
+
   // ---------- construir el HTML del widget ----------
   const launcher = document.createElement("button");
   launcher.id = "agente-launcher";
@@ -98,6 +136,7 @@
   const body = panel.querySelector("#agente-body");
   const form = panel.querySelector("#agente-form");
   const input = panel.querySelector("#agente-input");
+  let lastBotQuestion = ""; // contexto: última pregunta que el bot entendió, para acompañar el lead capturado
 
   // ---------- render helpers ----------
   function addBubble(text, from){
@@ -149,7 +188,20 @@
     if(!text || !text.trim()) return;
     addBubble(text, "user");
 
+    // Prioridad 1: ¿el cliente ha dejado un correo o teléfono?
+    // Se comprueba siempre, aunque también parezca coincidir con una FAQ.
+    if(!matchedFaq){
+      const contact = extractContact(text);
+      if(contact){
+        submitContacto(contact, lastBotQuestion);
+        addBubble(`¡Genial! Ya tengo tu ${contact.type} (${contact.value}). En breve nos pondremos en contacto contigo. Si es urgente, también puedes escribirnos directamente por WhatsApp.`);
+        addChips([], { showWhatsapp: true });
+        return;
+      }
+    }
+
     const faq = matchedFaq || findBestFaq(text);
+    if(faq){ lastBotQuestion = faq.question; }
 
     if(faq){
       // Coincidencia encontrada: solo respondemos. Sin volver a

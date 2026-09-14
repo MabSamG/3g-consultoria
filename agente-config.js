@@ -88,7 +88,7 @@ window.AGENTE_CONFIG = {
     },
     {
       id: "agente",
-      keywords: ["agente", "hablar con", "me atiendan", "atienda", "comunicarme"],
+      keywords: ["agente", "hablar con", "me atiendan", "atienda", "comunicarme", "saber más", "saber mas", "contacto", "contactar"],
       question: "¿Necesitas hablar con nosotros?",
       answer: "Si necesitas atención más concreta o personalizada, puedes escribirnos al correo o al WhatsApp. Te atenderemos lo antes posible. Si lo prefieres, también puedes dejarnos aquí tu correo o teléfono y nos pondremos en contacto contigo."
     },
