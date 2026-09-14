@@ -28,15 +28,24 @@ window.AGENTE_CONFIG = {
   fallback: "No estoy seguro de haber entendido bien eso. Puedes elegir una de estas preguntas, o hablar directamente con nosotros por WhatsApp:",
 
   // ids de las FAQs que se muestran como sugerencias (al inicio y en el fallback)
-  sugerenciasIniciales: ["horarios", "servicios", "pago", "plazos"],
+  sugerenciasIniciales: ["servicios", "precios_planes", "pago"],
 
   faqs: [
     {
+  id: "precios_planes",
+  keywords: ["precio de los planes", "precios", "cuanto cuestan los planes", "tarifas", "financiacion", "cuanto cuesta"],
+  question: "Ver precios de los planes",
+  askRegion: true,
+  answerEspana: "Nuestros planes en España: Plan Impulso 299€ (antes 598€), Plan Avanza 499€ (antes 998€) y Plan Elite 799€ (antes 1.598€). Los tres con financiación subvencionada a 1 año sin intereses.",
+  answerColombia: "Nuestros planes en Colombia: Plan Impulso 299€ / $1.072.000 COP (antes 598€), Plan Avanza 499€ / $1.789.000 COP (antes 998€) y Plan Elite 799€ / $2.864.000 COP (antes 1.598€). Los tres con financiación subvencionada a 1 año sin intereses. (*Cambio EUR→COP referencial según la tasa actual; puede variar.)"
+    },
+    {
       id: "info_general",
-      keywords: ["informacion", "información", "más info", "más información", "info", "ayuda", "quiero saber", "tengo una duda", "una pregunta", "dudas", "consulta", "necesito ayuda", "puedes ayudarme"],
+      keywords: ["informacion", "información", "info", "ayuda", "quiero saber", "tengo una duda", "una pregunta", "dudas", "consulta", "necesito ayuda", "puedes ayudarme"],
       question: "Quiero información",
       answer: "¡Claro! ¿Sobre qué te gustaría saber más? Aquí tienes algunos temas frecuentes:",
-      showOptions: true
+      showOptions: true,
+      isGeneric: true
     },
     {
       id: "horarios",
@@ -70,7 +79,7 @@ window.AGENTE_CONFIG = {
     },
     {
       id: "pago",
-      keywords: ["pago", "pagar", "precio", "cuesta", "financiacion", "cuotas", "mensualidad", "subvencion", "subvención"],
+      keywords: ["pago", "pagar", "oferta", "promocion", "promoción", "precio", "cuesta", "financiacion", "cuotas", "mensualidad", "subvencion", "subvención"],
       question: "¿Cómo puedo pagar?",
       answer: "Ahora, y por tiempo limitado, ofrecemos en todos los planes financiación subvencionada a 1 año sin intereses. Además de nuestras dos formas de pago habituales: al contado o pago fraccionado: 50% al iniciar y 50% al entregar la web terminada."
     },

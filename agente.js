@@ -34,19 +34,33 @@
 
   function findBestFaq(userText){
     const text = normalize(userText);
-    let best = null;
-    let bestScore = 0;
-    (cfg.faqs || []).forEach(faq => {
-      let score = 0;
-      (faq.keywords || []).forEach(kw => {
-        if(text.includes(normalize(kw))) score += 1;
+
+    function bestMatchIn(list){
+      let best = null;
+      let bestScore = 0;
+      list.forEach(faq => {
+        let score = 0;
+        (faq.keywords || []).forEach(kw => {
+          if(text.includes(normalize(kw))) score += 1;
+        });
+        if(score > bestScore){
+          bestScore = score;
+          best = faq;
+        }
       });
-      if(score > bestScore){
-        bestScore = score;
-        best = faq;
-      }
-    });
-    return bestScore > 0 ? best : null;
+      return bestScore > 0 ? best : null;
+    }
+
+    // Las preguntas específicas (horarios, planes, pago...) tienen
+    // siempre prioridad. Las marcadas como "isGeneric" (tipo "quiero
+    // información") solo se usan si ninguna específica encontró nada
+    // — así "más info sobre financiación" responde con financiación,
+    // no con el mensaje genérico, aunque ambas compartan la palabra
+    // "info".
+    const specific = (cfg.faqs || []).filter(f => !f.isGeneric);
+    const generic = (cfg.faqs || []).filter(f => f.isGeneric);
+
+    return bestMatchIn(specific) || bestMatchIn(generic);
   }
 
   function faqById(id){
@@ -170,6 +184,15 @@
   let lastBotQuestion = ""; // contexto: última pregunta que el bot entendió, para acompañar el lead capturado
   let awaitingName = false;   // true justo después de capturar un contacto, esperando el nombre
   let pendingContact = null;  // el contacto ya guardado, para asociarle el nombre si llega
+  let awaitingRegion = false; // true cuando se preguntó "¿España o Colombia?" y se espera la respuesta
+  let pendingRegionFaq = null; // la FAQ que disparó la pregunta de región
+
+  function detectRegion(text){
+    const t = normalize(text);
+    if(t.includes("espana") || t.includes("spain") || t.includes("espanol")) return "espana";
+    if(t.includes("colombia") || t.includes("colombiano")) return "colombia";
+    return null;
+  }
 
   // ---------- render helpers ----------
   function addBubble(text, from){
@@ -194,6 +217,20 @@
       btn.addEventListener("click", () => handleUserMessage(faq.question, faq));
       wrap.appendChild(btn);
     });
+
+    if(opts.showRegion){
+      const esp = document.createElement("button");
+      esp.className = "agente-option-btn";
+      esp.textContent = "🇪🇸 España";
+      esp.addEventListener("click", () => handleUserMessage("España"));
+      wrap.appendChild(esp);
+
+      const col = document.createElement("button");
+      col.className = "agente-option-btn";
+      col.textContent = "🇨🇴 Colombia";
+      col.addEventListener("click", () => handleUserMessage("Colombia"));
+      wrap.appendChild(col);
+    }
 
     if(opts.showWhatsapp){
       const wa = document.createElement("button");
@@ -220,6 +257,23 @@
   function handleUserMessage(text, matchedFaq){
     if(!text || !text.trim()) return;
     addBubble(text, "user");
+
+    // Si estábamos esperando el país (España/Colombia) para dar precios...
+    if(awaitingRegion){
+      const region = detectRegion(text);
+      if(region){
+        awaitingRegion = false;
+        const faq = pendingRegionFaq;
+        pendingRegionFaq = null;
+        addBubble(region === "espana" ? faq.answerEspana : faq.answerColombia);
+        return;
+      }
+      // Si no reconoce el país en la respuesta, se lo vuelve a preguntar
+      // en vez de asumir uno, para no dar precios equivocados.
+      addBubble("Perdona, ¿me confirmas si es para España o para Colombia?");
+      addChips([], { showWhatsapp: false, showRegion: true });
+      return;
+    }
 
     // Si estábamos esperando un nombre (justo tras capturar un
     // contacto) y este mensaje parece serlo, lo asociamos y cerramos
@@ -253,6 +307,21 @@
     const faq = matchedFaq || findBestFaq(text);
     if(faq){ lastBotQuestion = faq.question; }
 
+    if(faq && faq.askRegion){
+      // Si ya menciona el país en el mismo mensaje, no hace falta
+      // volver a preguntarlo — respondemos directo con esa región.
+      const regionYaDicha = detectRegion(text);
+      if(regionYaDicha){
+        addBubble(regionYaDicha === "espana" ? faq.answerEspana : faq.answerColombia);
+        return;
+      }
+      awaitingRegion = true;
+      pendingRegionFaq = faq;
+      addBubble("¿Nos escribes desde España o desde Colombia? Así te doy los precios exactos.");
+      addChips([], { showWhatsapp: false, showRegion: true });
+      return;
+    }
+
     if(faq){
       // Coincidencia encontrada: solo respondemos. Sin volver a
       // desplegar el menú — que la conversación siga fluyendo.
@@ -264,9 +333,21 @@
         addChips(cfg.sugerenciasIniciales || [], { showWhatsapp: false });
       }
     } else {
-      // Sin coincidencia: aquí sí ayudamos con sugerencias y WhatsApp.
-      addBubble(cfg.fallback || "No entendí bien tu pregunta.");
-      addChips(cfg.sugerenciasIniciales || [], { showWhatsapp: true });
+      // Último recurso antes de rendirnos: si menciona un país junto a
+      // algo de servicios/precios/planes, aunque no haya hecho match
+      // exacto, le damos la info de esa región en vez de "no entendí"
+      // — quedaría muy mal responder eso a una pregunta tan razonable.
+      const region = detectRegion(text);
+      const pareceServiciosOPrecio = /servicio|precio|plan|pack|cuesta|ofrecen|tienda|pagina web|web|negocio|recomiendan|recomendas/.test(normalize(text));
+      const faqRegion = (cfg.faqs || []).find(f => f.askRegion && f.answerEspana && f.answerColombia);
+
+      if(region && pareceServiciosOPrecio && faqRegion){
+        addBubble(region === "espana" ? faqRegion.answerEspana : faqRegion.answerColombia);
+      } else {
+        // Sin coincidencia: aquí sí ayudamos con sugerencias y WhatsApp.
+        addBubble(cfg.fallback || "No entendí bien tu pregunta.");
+        addChips(cfg.sugerenciasIniciales || [], { showWhatsapp: true });
+      }
     }
   }
 
