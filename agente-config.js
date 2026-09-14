@@ -90,13 +90,19 @@ window.AGENTE_CONFIG = {
       id: "agente",
       keywords: ["agente", "hablar con", "me atiendan", "atienda", "comunicarme"],
       question: "¿Necesitas hablar con nosotros?",
-      answer: "Si necesitas atención más concreta o personalizada, pues escribirnos al correo o al Whatsapp. Te atenderemos lo antes posible."
+      answer: "Si necesitas atención más concreta o personalizada, puedes escribirnos al correo o al WhatsApp. Te atenderemos lo antes posible. Si lo prefieres, también puedes dejarnos aquí tu correo o teléfono y nos pondremos en contacto contigo."
     },
     {
       id: "dedicais",
       keywords: ["dedicais", "quienes sois", "quiénes sois", "quién hay", "quiés es", "quien es", "ustedes", "vosotros"],
       question: "¿Quiéres saber sobre nosotros?",
       answer: "¡Por supuesto! 3G es una empresa familiar que, como su propio nombre indica, está compuesta por tres generaciones: abuelo, madre e hijo. Cada uno especialista en un área diferente que, juntas, crean una experiencia completa para los emprendedores, empresas y negocios."
+    },
+    {
+      id: "hola",
+      keywords: ["hola", "ey", "buenos dias", "buenas tardes", "buenas noches", "ola", "qué tal", "que tal", "cómo están", "como están", "como estan"],
+      question: "¡Hola!",
+      answer: "¿En qué podemos ayudarte?"
     }
   ]
 };
