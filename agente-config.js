@@ -78,6 +78,12 @@ window.AGENTE_CONFIG = {
       answer: "El Plan Elite es tu tienda virtual completa: web profesional con carrito de compra, pasarela de pagos, CRM y cálculo de envíos. Ahora en promoción desde 799€ (antes 1.598€), con opción a financiación a 1 año."
     },
     {
+      id: "contratar",
+      keywords: ["contratar", "reservar", "contrato","quiero la mia", "quiero mi web", "quiero mi plan", "quiero mi pack"],
+      question: "Quiero contratar",
+      answer: "Para esto, ponte en contacto con nosotros. Puedes dejarnos tu teléfono o correo, o si lo prefieres, escribirnos un Whatsapp. Te atenderemos lo antes posible. ¡Gracias!"
+    },
+    {
       id: "pago",
       keywords: ["pago", "pagar", "oferta", "promocion", "promoción", "precio", "cuesta", "financiacion", "cuotas", "mensualidad", "subvencion", "subvención"],
       question: "¿Cómo puedo pagar?",
@@ -115,3 +121,4 @@ window.AGENTE_CONFIG = {
     }
   ]
 };
+
