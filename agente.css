@@ -184,6 +184,7 @@
 }
 #agente-input{
   flex: 1;
+  min-width: 0;
   border: 1.5px solid #e5e7eb;
   border-radius: 20px;
   padding: 12px 14px;
