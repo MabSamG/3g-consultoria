@@ -27,7 +27,7 @@
   height: 60px;
   padding: 0 22px 0 18px;
   border-radius: 30px;
-  background: var(--agente-accent);
+  background: var(--agente-primary);
   color: #fff;
   border: none;
   cursor: pointer;
@@ -210,6 +210,23 @@
   justify-content: center;
 }
 #agente-send:hover{ opacity: .9; }
+
+/* En móvil, el botón del Agente pasa a circular y sin texto (para no
+   acaparar tanto sitio en pantalla), pero se mantiene ligeramente más
+   grande que el de WhatsApp y con más sombra, para que se note que es
+   el más importante de los dos. */
+@media (max-width: 600px){
+  #agente-launcher{
+    width: 64px;
+    height: 64px;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+    box-shadow: 0 10px 24px rgba(0,0,0,.35);
+  }
+  #agente-launcher span{ display: none; }
+  #agente-launcher svg{ width: 28px; height: 28px; }
+}
 
 @media (max-width: 420px){
   #agente-panel{ right: 16px; left: 16px; width: auto; }

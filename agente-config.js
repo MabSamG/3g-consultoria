@@ -60,6 +60,12 @@ window.AGENTE_CONFIG = {
       answer: "Creamos páginas web y tiendas online para emprendedores y negocios. Actualmente tenemos 3 planes: Impulso (página web profesional), Avanza (tienda local con reservas) y Elite (tienda virtual completa con pagos y envíos)."
     },
     {
+      id: "contratar",
+      keywords: ["contratar", "reservar", "contrato","quiero la mia", "quiero una web", "quiero mi web", "quiero mi plan", "quiero un impulso", "quiero un avanza", "quiero crecer", "quiero una élite", "quiero una elite", "quiero un elite", "quiero mi pack"],
+      question: "Quiero contratar",
+      answer: "¡Genial! Escribe aquí abajo, en el cuadro de texto del chat, tu teléfono o tu correo y te contactamos nosotros. Si lo prefieres, también puedes escribirnos directamente por WhatsApp. Te atenderemos lo antes posible. ¡Gracias!"
+    },
+    {
       id: "plan_impulso",
       keywords: ["impulso", "plan impulso", "plan basico", "el mas barato", "pack impulso", "pack básico", "básico", "basico"],
       question: "¿Qué incluye el Plan Impulso?",
@@ -73,15 +79,9 @@ window.AGENTE_CONFIG = {
     },
     {
       id: "plan_elite",
-      keywords: ["elite", "plan elite", "tienda virtual", "pagos", "pse", "nequi", "carrito de compra", "élite", "plan élite", "pack elite", "tienda completa", "superior", "completo"],
+      keywords: ["elite", "plan elite", "tienda virtual", "pagos", "pse", "nequi", "carrito de compra", "pack elite", "tienda completa", "superior", "completo"],
       question: "¿Qué incluye el Plan Elite?",
       answer: "El Plan Elite es tu tienda virtual completa: web profesional con carrito de compra, pasarela de pagos, CRM y cálculo de envíos. Ahora en promoción desde 799€ (antes 1.598€), con opción a financiación a 1 año."
-    },
-    {
-      id: "contratar",
-      keywords: ["contratar", "reservar", "contrato","quiero la mia", "quiero mi web", "quiero mi plan", "quiero mi pack"],
-      question: "Quiero contratar",
-      answer: "Para esto, ponte en contacto con nosotros. Puedes dejarnos tu teléfono o correo, o si lo prefieres, escribirnos un Whatsapp. Te atenderemos lo antes posible. ¡Gracias!"
     },
     {
       id: "pago",
