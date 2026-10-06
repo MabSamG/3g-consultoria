@@ -1,0 +1,479 @@
+/* =========================================================
+   3G Tres Generaciones — Diagnóstico gratis
+   Hoja propia y ligera (la página no carga style.css).
+   Mismos colores y tipografía que la web principal.
+   ========================================================= */
+
+:root {
+  --bg-dark: #2C2C2A;
+  --coral: #D85A30;
+  --coral-claro: #F0805A;
+  --petroleo: #215C60;
+  --dorado: #BA7517;
+  --text-primary: #F5F5F3;
+  --text-secondary: #A8A7A3;
+  --step-bg: #3A3A37;
+  --borde: rgba(245, 245, 243, 0.14);
+  --error: #FF8A80;
+
+  --radius-lg: 28px;
+  --radius-md: 20px;
+
+  --font: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font);
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ---------- Cabecera mínima ---------- */
+.dx-header {
+  display: flex;
+  justify-content: center;
+  padding: 18px 16px 6px;
+  padding-top: max(18px, env(safe-area-inset-top));
+}
+
+.dx-header__logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+/* ---------- Contenedor ---------- */
+.dx {
+  flex: 1;
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 12px 16px 32px;
+}
+
+/* ---------- Barra: volver + progreso ---------- */
+.dx-barra {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.dx-volver {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--borde);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.dx-volver:hover,
+.dx-volver:focus-visible {
+  border-color: var(--coral);
+  color: var(--coral-claro);
+}
+
+.dx-progreso {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--step-bg);
+  overflow: hidden;
+}
+
+.dx-progreso__relleno {
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: var(--coral);
+  transition: width 0.3s ease;
+}
+
+.dx-progreso__texto {
+  flex-shrink: 0;
+  min-width: 3.2em;
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* ---------- Pantallas ---------- */
+.dx-pantalla {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: dx-entrar 0.25s ease;
+}
+
+@keyframes dx-entrar {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dx-pantalla { animation: none; }
+  .dx-progreso__relleno { transition: none; }
+}
+
+.dx-pantalla--inicio,
+.dx-pantalla--gracias {
+  padding-top: 6vh;
+  text-align: center;
+  align-items: center;
+}
+
+.dx-titulo {
+  font-size: clamp(1.75rem, 7.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.dx-subtitulo {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 30em;
+}
+
+.dx-subtitulo strong {
+  color: var(--text-primary);
+}
+
+.dx-nota {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.dx-pregunta {
+  display: block;
+  font-size: clamp(1.3rem, 5.5vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+/* ---------- Botones ---------- */
+.dx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 58px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 999px;
+  background: var(--coral);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(216, 90, 48, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.dx-btn:hover,
+.dx-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(216, 90, 48, 0.45);
+}
+
+.dx-btn:focus-visible,
+.dx-opcion:focus-visible,
+.dx-volver:focus-visible,
+.dx-input:focus-visible {
+  outline: 3px solid var(--coral-claro);
+  outline-offset: 2px;
+}
+
+.dx-btn[disabled] {
+  opacity: 0.6;
+  cursor: wait;
+  transform: none;
+}
+
+.dx-btn--whatsapp {
+  background: #25D366;
+  color: #0B3B1F;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+}
+
+.dx-btn--whatsapp:hover,
+.dx-btn--whatsapp:focus-visible {
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.45);
+}
+
+.dx-btn__icono {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* ---------- Opciones (respuestas) ---------- */
+.dx-opciones {
+  display: grid;
+  gap: 12px;
+}
+
+.dx-opcion {
+  width: 100%;
+  min-height: 62px;
+  padding: 14px 20px;
+  border: 2px solid var(--borde);
+  border-radius: var(--radius-md);
+  background: var(--step-bg);
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 1.08rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.dx-opcion:hover {
+  border-color: rgba(216, 90, 48, 0.6);
+}
+
+.dx-opcion[aria-pressed="true"] {
+  border-color: var(--coral);
+  background: rgba(216, 90, 48, 0.18);
+}
+
+/* ---------- Campos de formulario ---------- */
+.dx-form-negocio,
+.dx-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.dx-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dx-campo > label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.dx-opcional {
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.dx-input {
+  width: 100%;
+  min-height: 56px;
+  padding: 12px 16px;
+  border: 2px solid var(--borde);
+  border-radius: 16px;
+  background: var(--step-bg);
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 1.05rem; /* >= 16px: evita el zoom automático en iOS */
+}
+
+.dx-input::placeholder {
+  color: rgba(168, 167, 163, 0.6);
+}
+
+.dx-input:focus {
+  border-color: var(--coral);
+}
+
+.dx-input[aria-invalid="true"] {
+  border-color: var(--error);
+}
+
+.dx-error {
+  font-size: 0.85rem;
+  color: var(--error);
+}
+
+.dx-campo--check {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  column-gap: 12px;
+  row-gap: 6px;
+}
+
+.dx-campo--check input {
+  width: 24px;
+  height: 24px;
+  margin: 2px 0 0;
+  accent-color: var(--coral);
+  cursor: pointer;
+}
+
+.dx-campo--check label {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.dx-campo--check label a,
+.dx-enlace {
+  color: var(--coral-claro);
+  text-decoration: underline;
+}
+
+.dx-campo--check .dx-error {
+  grid-column: 2;
+}
+
+.dx-trampa {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.dx-aviso {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px;
+  border: 1px solid var(--error);
+  border-radius: 16px;
+  font-size: 0.9rem;
+}
+
+/* ---------- Resultado ---------- */
+.dx-resultado__negocio {
+  font-size: clamp(1.5rem, 7vw, 2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.dx-resultado {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dx-linea {
+  padding: 18px 20px;
+  border-radius: var(--radius-md);
+  background: var(--step-bg);
+  font-size: 1.02rem;
+  color: var(--text-secondary);
+}
+
+.dx-cifra {
+  display: block;
+  margin: 4px 0;
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--coral-claro);
+}
+
+.dx-linea--dinero {
+  background: var(--petroleo);
+  color: rgba(245, 245, 243, 0.85);
+}
+
+.dx-cifra--dinero {
+  font-size: 1.85rem;
+  color: #fff;
+}
+
+.dx-pantalla[data-pantalla="resultado"] > .dx-nota {
+  margin-top: -8px;
+}
+
+/* ---------- El caramelo ---------- */
+.dx-caramelo {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 12px;
+  padding: 24px 20px;
+  border: 2px solid var(--coral);
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+}
+
+.dx-caramelo__titulo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Pie ---------- */
+.dx-pie {
+  padding: 20px 16px;
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+  text-align: center;
+  font-size: 0.78rem;
+}
+
+.dx-pie a {
+  color: var(--text-secondary);
+}
+
+@media (min-width: 768px) {
+  .dx {
+    padding-top: 24px;
+  }
+
+  .dx-btn {
+    width: auto;
+    min-width: 280px;
+    align-self: center;
+  }
+
+  .dx-pantalla--inicio .dx-btn,
+  .dx-pantalla--gracias .dx-btn {
+    align-self: center;
+  }
+}

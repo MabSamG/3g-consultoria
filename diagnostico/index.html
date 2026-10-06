@@ -1,0 +1,203 @@
+<!-- 3G Tres Generaciones — Diagnóstico gratis (destino del QR de las tarjetas) -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#2C2C2A">
+
+  <title>Diagnóstico gratis de tu negocio | 3G Tres Generaciones</title>
+  <meta name="description" content="Descubre en menos de 1 minuto cuánto tiempo pasas contestando mensajes y cuántos clientes se te pueden estar escapando.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/diagnostico/diagnostico.css">
+</head>
+<body>
+
+  <header class="dx-header">
+    <img src="/assets/3G_logo_icono.png" alt="3G Tres Generaciones" class="dx-header__logo" width="44" height="44">
+  </header>
+
+  <main class="dx">
+
+    <!-- Barra superior: volver + progreso -->
+    <div class="dx-barra" id="dxBarra" hidden>
+      <button type="button" class="dx-volver" id="dxVolver" aria-label="Volver a la pregunta anterior">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="dx-progreso" id="dxProgreso" role="progressbar" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0" aria-label="Progreso">
+        <div class="dx-progreso__relleno" id="dxProgresoRelleno"></div>
+      </div>
+      <span class="dx-progreso__texto" id="dxProgresoTexto"></span>
+    </div>
+
+    <!-- ========== Inicio ========== -->
+    <section class="dx-pantalla dx-pantalla--inicio" data-pantalla="inicio">
+      <h1 class="dx-titulo" tabindex="-1">Diagnóstico gratis de tu negocio en 1 minuto</h1>
+      <p class="dx-subtitulo">Descubre cuánto tiempo pasas contestando mensajes y cuántos clientes se te pueden estar escapando.</p>
+      <button type="button" class="dx-btn" data-ir="negocio">Empezar</button>
+      <p class="dx-nota">Menos de 1 minuto. Sin registrarte.</p>
+    </section>
+
+    <!-- ========== Paso 1 ========== -->
+    <section class="dx-pantalla" data-pantalla="negocio" hidden>
+      <form class="dx-form-negocio" id="dxFormNegocio" novalidate>
+        <label class="dx-pregunta" for="dxNegocio" tabindex="-1">¿Cómo se llama tu negocio?</label>
+        <input class="dx-input" type="text" id="dxNegocio" name="negocio" maxlength="80" autocomplete="organization" autocapitalize="words" enterkeyhint="next" required>
+        <p class="dx-error" id="dxNegocioError" hidden>Escribe el nombre de tu negocio.</p>
+        <button type="submit" class="dx-btn">Siguiente</button>
+      </form>
+    </section>
+
+    <section class="dx-pantalla" data-pantalla="sector" hidden>
+      <h2 class="dx-pregunta" tabindex="-1">¿A qué se dedica?</h2>
+      <div class="dx-opciones" data-campo="sector">
+        <button type="button" class="dx-opcion" data-valor="estetica">Estética</button>
+        <button type="button" class="dx-opcion" data-valor="peluqueria">Peluquería</button>
+        <button type="button" class="dx-opcion" data-valor="moda">Moda</button>
+        <button type="button" class="dx-opcion" data-valor="otro">Otro</button>
+      </div>
+    </section>
+
+    <section class="dx-pantalla" data-pantalla="web" hidden>
+      <h2 class="dx-pregunta" tabindex="-1">¿Tu negocio tiene web?</h2>
+      <div class="dx-opciones" data-campo="web">
+        <button type="button" class="dx-opcion" data-valor="si">Sí</button>
+        <button type="button" class="dx-opcion" data-valor="no">No</button>
+      </div>
+    </section>
+
+    <!-- ========== Paso 2 ========== -->
+    <section class="dx-pantalla" data-pantalla="mensajes" hidden>
+      <h2 class="dx-pregunta" tabindex="-1">¿Cuántos mensajes o llamadas recibes al día preguntando precios, horarios o citas?</h2>
+      <div class="dx-opciones" data-campo="mensajes">
+        <button type="button" class="dx-opcion" data-valor="0-5">De 0 a 5</button>
+        <button type="button" class="dx-opcion" data-valor="6-15">Entre 6 y 15</button>
+        <button type="button" class="dx-opcion" data-valor="15+">Más de 15</button>
+      </div>
+    </section>
+
+    <section class="dx-pantalla" data-pantalla="fuera" hidden>
+      <h2 class="dx-pregunta" tabindex="-1">¿Cuántos te llegan fuera de tu horario de atención?</h2>
+      <div class="dx-opciones" data-campo="fuera">
+        <button type="button" class="dx-opcion" data-valor="pocos">Pocos</button>
+        <button type="button" class="dx-opcion" data-valor="mitad">La mitad</button>
+        <button type="button" class="dx-opcion" data-valor="muchos">Muchos</button>
+      </div>
+    </section>
+
+    <section class="dx-pantalla" data-pantalla="reserva" hidden>
+      <h2 class="dx-pregunta" tabindex="-1">¿Tus clientes pueden reservar o comprar sin hablar contigo?</h2>
+      <div class="dx-opciones" data-campo="reserva">
+        <button type="button" class="dx-opcion" data-valor="si">Sí</button>
+        <button type="button" class="dx-opcion" data-valor="no">No</button>
+      </div>
+    </section>
+
+    <section class="dx-pantalla" data-pantalla="gasto" hidden>
+      <h2 class="dx-pregunta" tabindex="-1">¿Cuánto se gasta de media un cliente en tu negocio?</h2>
+      <div class="dx-opciones" data-campo="gasto">
+        <button type="button" class="dx-opcion" data-valor="-30">Menos de 30 €</button>
+        <button type="button" class="dx-opcion" data-valor="30-60">Entre 30 y 60 €</button>
+        <button type="button" class="dx-opcion" data-valor="60+">Más de 60 €</button>
+      </div>
+    </section>
+
+    <!-- ========== Resultado ========== -->
+    <section class="dx-pantalla" data-pantalla="resultado" hidden>
+      <h2 class="dx-resultado__negocio" id="dxResNegocio" tabindex="-1"></h2>
+
+      <div class="dx-resultado">
+        <p class="dx-linea">Pasas unas <strong class="dx-cifra"><span id="dxResHoras"></span> horas al mes</strong> contestando mensajes que se repiten.</p>
+        <p class="dx-linea">Te llegan unas <strong class="dx-cifra"><span id="dxResConsultas"></span> consultas al mes fuera de tu horario de atención.</strong></p>
+        <p class="dx-linea dx-linea--dinero" id="dxResDineroLinea">Si solo 1 de cada <span id="dxResTasa"></span> acabara en <span id="dxResCitaVenta"></span>, serían <strong class="dx-cifra dx-cifra--dinero">unos <span id="dxResDinero"></span> € más al mes.</strong></p>
+      </div>
+      <p class="dx-nota">Cálculo aproximado hecho con tus respuestas.</p>
+
+      <div class="dx-caramelo">
+        <h3 class="dx-caramelo__titulo">¿Quieres ver cómo quedaría <span id="dxCarameloObjeto"></span>?</h3>
+        <p>Te preparamos un boceto gratis con tu logo, tus fotos y la información de tus redes.</p>
+        <button type="button" class="dx-btn" data-ir="boceto">Quiero mi boceto</button>
+      </div>
+    </section>
+
+    <!-- ========== Formulario del boceto ========== -->
+    <section class="dx-pantalla" data-pantalla="boceto" hidden>
+      <h2 class="dx-pregunta" tabindex="-1">Pide tu boceto gratis</h2>
+      <form class="dx-form" id="dxFormBoceto" novalidate>
+        <div class="dx-campo">
+          <label for="dxNombre">Tu nombre</label>
+          <input class="dx-input" type="text" id="dxNombre" name="nombre" maxlength="80" autocomplete="name" autocapitalize="words" required>
+          <p class="dx-error" hidden>Escribe tu nombre.</p>
+        </div>
+        <div class="dx-campo">
+          <label for="dxWhatsapp">WhatsApp</label>
+          <input class="dx-input" type="tel" id="dxWhatsapp" name="whatsapp" maxlength="20" autocomplete="tel" inputmode="tel" placeholder="600 000 000" required>
+          <p class="dx-error" hidden>Escribe un móvil español válido (9 cifras).</p>
+        </div>
+        <div class="dx-campo">
+          <label for="dxRedes">Usuario de Instagram o enlace a tus redes</label>
+          <input class="dx-input" type="text" id="dxRedes" name="redes" maxlength="200" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="@tunegocio" required>
+          <p class="dx-error" hidden>Escribe tu usuario de Instagram o el enlace a tus redes.</p>
+        </div>
+        <div class="dx-campo" id="dxCampoWeb" hidden>
+          <label for="dxWeb">Tu web actual</label>
+          <input class="dx-input" type="text" id="dxWeb" name="web" maxlength="200" inputmode="url" autocomplete="url" autocapitalize="none" spellcheck="false" placeholder="tunegocio.com">
+          <p class="dx-error" hidden>Revisa la dirección de tu web.</p>
+        </div>
+        <div class="dx-campo">
+          <label for="dxEmail">Email <span class="dx-opcional">(opcional)</span></label>
+          <input class="dx-input" type="email" id="dxEmail" name="email" maxlength="160" autocomplete="email" autocapitalize="none" spellcheck="false">
+          <p class="dx-error" hidden>Revisa el email.</p>
+        </div>
+
+        <!-- Campo trampa para bots: las personas no lo ven -->
+        <div class="dx-trampa" aria-hidden="true">
+          <label for="dxSitio">No rellenar</label>
+          <input type="text" id="dxSitio" name="sitio" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="dx-campo dx-campo--check">
+          <input type="checkbox" id="dxConsentimiento" name="consentimiento" required>
+          <label for="dxConsentimiento">Soy el titular o responsable de este negocio y autorizo a 3G Tres Generaciones a usar el logotipo, las imágenes y la información de mis redes sociales y mi web únicamente para preparar un boceto de web que se me enviará de forma privada. No se publicará ni se usará para ningún otro fin, y se eliminará si no seguimos adelante. He leído la <a href="/privacidad/" target="_blank" rel="noopener">política de privacidad</a>.</label>
+          <p class="dx-error" hidden>Necesitamos tu autorización para preparar el boceto.</p>
+        </div>
+
+        <div class="dx-aviso" id="dxEnvioError" role="alert" hidden>
+          <p>No hemos podido guardar tus datos. Vuelve a intentarlo o escríbenos directamente por WhatsApp.</p>
+          <a class="dx-enlace" id="dxEnvioErrorWhatsapp" href="https://wa.me/34611871937" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        </div>
+
+        <button type="submit" class="dx-btn" id="dxEnviar">Pedir mi boceto</button>
+      </form>
+    </section>
+
+    <!-- ========== Confirmación ========== -->
+    <section class="dx-pantalla dx-pantalla--gracias" data-pantalla="gracias" hidden>
+      <h2 class="dx-titulo" tabindex="-1">Recibido.</h2>
+      <p class="dx-subtitulo">Estamos preparando el boceto de <strong id="dxGraciasNegocio"></strong> y muy pronto te lo enviamos por WhatsApp.</p>
+      <a class="dx-btn dx-btn--whatsapp" id="dxGraciasWhatsapp" href="https://wa.me/34611871937" target="_blank" rel="noopener">
+        <svg class="dx-btn__icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.478 2 12c0 1.86.505 3.646 1.457 5.203L2 22l4.938-1.396A9.943 9.943 0 0 0 12.001 22C17.523 22 22 17.523 22 12S17.523 2 12.001 2zm0 18.03a8.01 8.01 0 0 1-4.336-1.278l-.311-.188-3.037.858.842-2.997-.199-.31A8.006 8.006 0 1 1 20.007 12a8.014 8.014 0 0 1-8.006 8.03z"/></svg>
+        Confirmar por WhatsApp
+      </a>
+    </section>
+
+  </main>
+
+  <footer class="dx-pie">
+    <a href="/privacidad/" target="_blank" rel="noopener">Política de privacidad</a>
+  </footer>
+
+  <script src="/diagnostico/diagnostico.js"></script>
+</body>
+</html>
