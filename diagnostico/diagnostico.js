@@ -6,10 +6,14 @@
    Cada respuesta usa un valor prudente dentro de su tramo. */
 const MENSAJES_DIA = { '0-5': 3, '6-15': 10, '15+': 20 };
 const PCT_FUERA_HORARIO = { pocos: 0.20, mitad: 0.50, muchos: 0.70 };
-const GASTO_MEDIO = { '-30': 25, '30-60': 40, '60+': 70 };
+const GASTO_MEDIO = { '-20': 15, '20-50': 35, '50+': 60 };
 const MINUTOS_POR_MENSAJE = 3;
 const DIAS_MES = 30;
-const TASA_RECUPERACION = 0.05; // 1 de cada 20
+const TASA_RECUPERACION = 0.10; // 1 de cada 10
+
+/* ---------- Textos según el sector ---------- */
+const PALABRA_SECTOR = { servicios: 'cita', comercio: 'venta', otros: 'cliente' };
+const BOCETO_SECTOR = { servicios: 'web', comercio: 'tienda online', otros: 'web' };
 
 /* ---------- Otros ajustes ---------- */
 const WHATSAPP_3G = '34611871937';
@@ -172,10 +176,6 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
 
   /* ---------- Resultado ---------- */
 
-  function citaOVenta() {
-    return respuestas.sector === 'moda' || respuestas.sector === 'otro' ? 'venta' : 'cita';
-  }
-
   function formatear(n) {
     return n.toLocaleString('es-ES');
   }
@@ -187,13 +187,22 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
     $('dxResHoras').textContent = formatear(resultado.horas);
     $('dxResConsultas').textContent = formatear(resultado.consultas);
     $('dxResTasa').textContent = String(Math.round(1 / TASA_RECUPERACION));
-    $('dxResCitaVenta').textContent = citaOVenta();
+    $('dxResPalabra').textContent = PALABRA_SECTOR[respuestas.sector];
+    $('dxResClientes').textContent = resultado.clientes === 1
+      ? '1 cliente más al mes,'
+      : `unos ${formatear(resultado.clientes)} clientes más al mes,`;
     $('dxResDinero').textContent = formatear(resultado.dinero);
     $('dxResDineroLinea').hidden = !resultado.mostrarDinero;
 
-    $('dxCarameloObjeto').textContent = (respuestas.sector === 'moda' ? 'la tienda online de ' : 'la web de ') + respuestas.negocio;
+    $('dxCarameloObjeto').textContent = BOCETO_SECTOR[respuestas.sector];
+    $('dxCarameloNombre').textContent = respuestas.negocio;
 
-    guardarResultado();
+    // El guardado nunca debe impedir ver el resultado
+    try {
+      guardarResultado();
+    } catch (err) {
+      console.warn('No se ha podido guardar el diagnóstico:', err);
+    }
   }
 
   function datosDiagnostico() {
@@ -249,7 +258,6 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
 
   function prepararBoceto() {
     $('dxCampoWeb').hidden = respuestas.web !== 'si';
-    $('dxEnvioError').hidden = true;
   }
 
   function limpiarTelefono(valor) {
@@ -302,7 +310,6 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
     enviando = true;
     boton.disabled = true;
     boton.textContent = 'Enviando…';
-    $('dxEnvioError').hidden = true;
 
     try {
       await guardadoEnCurso; // así usamos la fila ya creada al ver el resultado
@@ -316,15 +323,15 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
         consentimiento_version: CONSENTIMIENTO_VERSION,
         sitio: f.sitio.value,
       }));
-      ir('gracias');
     } catch (err) {
-      $('dxEnvioErrorWhatsapp').href = enlaceWhatsapp();
-      $('dxEnvioError').hidden = false;
+      // Si falla el guardado seguimos igual: el mensaje de WhatsApp de la confirmación nos trae el contacto
+      console.warn('No se ha podido guardar la petición de boceto:', err);
     } finally {
       enviando = false;
       boton.disabled = false;
       boton.textContent = 'Pedir mi boceto';
     }
+    ir('gracias');
   });
 
   /* ---------- Confirmación ---------- */
@@ -341,6 +348,9 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
   }
 
   /* ---------- Arranque ---------- */
+  // TEMPORAL: comparar estilos del nombre en el bloque del boceto (?nombre=a o ?nombre=b)
+  document.body.classList.add(new URLSearchParams(location.search).get('nombre') === 'b' ? 'dx-nombre-b' : 'dx-nombre-a');
+
   history.replaceState({ pantalla: 'inicio' }, '');
   mostrar('inicio');
 })();

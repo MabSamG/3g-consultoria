@@ -356,8 +356,7 @@ a {
   cursor: pointer;
 }
 
-.dx-campo--check label a,
-.dx-enlace {
+.dx-campo--check label a {
   color: var(--coral-claro);
   text-decoration: underline;
 }
@@ -372,16 +371,6 @@ a {
   width: 1px;
   height: 1px;
   overflow: hidden;
-}
-
-.dx-aviso {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 14px 16px;
-  border: 1px solid var(--error);
-  border-radius: 16px;
-  font-size: 0.9rem;
 }
 
 /* ---------- Resultado ---------- */
@@ -420,6 +409,10 @@ a {
   color: rgba(245, 245, 243, 0.85);
 }
 
+.dx-cifra--clientes {
+  color: #fff;
+}
+
 .dx-cifra--dinero {
   font-size: 1.85rem;
   color: #fff;
@@ -444,9 +437,30 @@ a {
 .dx-caramelo__titulo {
   font-size: 1.25rem;
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.3;
   color: var(--text-primary);
   overflow-wrap: anywhere;
+}
+
+/* Nombre del negocio: dorado de la marca (mejor contraste que el coral sobre el fondo oscuro) */
+.dx-caramelo__nombre {
+  color: var(--dorado);
+}
+
+/* TEMPORAL — opción A: serif cursiva */
+.dx-nombre-a .dx-caramelo__nombre {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.3em;
+}
+
+/* TEMPORAL — opción B: manuscrita */
+.dx-nombre-b .dx-caramelo__nombre {
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  font-size: 1.6em;
+  line-height: 1;
 }
 
 /* ---------- Pie ---------- */

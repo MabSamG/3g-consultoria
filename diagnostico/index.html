@@ -18,7 +18,7 @@
   <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,700&family=Caveat:wght@700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/diagnostico/diagnostico.css">
 </head>
@@ -44,7 +44,7 @@
     <!-- ========== Inicio ========== -->
     <section class="dx-pantalla dx-pantalla--inicio" data-pantalla="inicio">
       <h1 class="dx-titulo" tabindex="-1">Diagnóstico gratis de tu negocio en 1 minuto</h1>
-      <p class="dx-subtitulo">Descubre cuánto tiempo pasas contestando mensajes y cuántos clientes se te pueden estar escapando.</p>
+      <p class="dx-subtitulo">Descubre cuántos clientes se te pueden estar escapando.</p>
       <button type="button" class="dx-btn" data-ir="negocio">Empezar</button>
       <p class="dx-nota">Menos de 1 minuto. Sin registrarte.</p>
     </section>
@@ -62,10 +62,9 @@
     <section class="dx-pantalla" data-pantalla="sector" hidden>
       <h2 class="dx-pregunta" tabindex="-1">¿A qué se dedica?</h2>
       <div class="dx-opciones" data-campo="sector">
-        <button type="button" class="dx-opcion" data-valor="estetica">Estética</button>
-        <button type="button" class="dx-opcion" data-valor="peluqueria">Peluquería</button>
-        <button type="button" class="dx-opcion" data-valor="moda">Moda</button>
-        <button type="button" class="dx-opcion" data-valor="otro">Otro</button>
+        <button type="button" class="dx-opcion" data-valor="servicios">Servicios</button>
+        <button type="button" class="dx-opcion" data-valor="comercio">Comercio</button>
+        <button type="button" class="dx-opcion" data-valor="otros">Otros</button>
       </div>
     </section>
 
@@ -107,9 +106,9 @@
     <section class="dx-pantalla" data-pantalla="gasto" hidden>
       <h2 class="dx-pregunta" tabindex="-1">¿Cuánto se gasta de media un cliente en tu negocio?</h2>
       <div class="dx-opciones" data-campo="gasto">
-        <button type="button" class="dx-opcion" data-valor="-30">Menos de 30 €</button>
-        <button type="button" class="dx-opcion" data-valor="30-60">Entre 30 y 60 €</button>
-        <button type="button" class="dx-opcion" data-valor="60+">Más de 60 €</button>
+        <button type="button" class="dx-opcion" data-valor="-20">Menos de 20 €</button>
+        <button type="button" class="dx-opcion" data-valor="20-50">Entre 20 y 50 €</button>
+        <button type="button" class="dx-opcion" data-valor="50+">Más de 50 €</button>
       </div>
     </section>
 
@@ -120,13 +119,13 @@
       <div class="dx-resultado">
         <p class="dx-linea">Pasas unas <strong class="dx-cifra"><span id="dxResHoras"></span> horas al mes</strong> contestando mensajes que se repiten.</p>
         <p class="dx-linea">Te llegan unas <strong class="dx-cifra"><span id="dxResConsultas"></span> consultas al mes fuera de tu horario de atención.</strong></p>
-        <p class="dx-linea dx-linea--dinero" id="dxResDineroLinea">Si solo 1 de cada <span id="dxResTasa"></span> acabara en <span id="dxResCitaVenta"></span>, serían <strong class="dx-cifra dx-cifra--dinero">unos <span id="dxResDinero"></span> € más al mes.</strong></p>
+        <p class="dx-linea dx-linea--dinero" id="dxResDineroLinea">Si solo 1 de cada <span id="dxResTasa"></span> de esas consultas acabara en <span id="dxResPalabra"></span>, serían <strong class="dx-cifra dx-cifra--clientes" id="dxResClientes"></strong> <strong class="dx-cifra dx-cifra--dinero">unos <span id="dxResDinero"></span> € más.</strong></p>
       </div>
       <p class="dx-nota">Cálculo aproximado hecho con tus respuestas.</p>
 
       <div class="dx-caramelo">
-        <h3 class="dx-caramelo__titulo">¿Quieres ver cómo quedaría <span id="dxCarameloObjeto"></span>?</h3>
-        <p>Te preparamos un boceto gratis con tu logo, tus fotos y la información de tus redes.</p>
+        <h3 class="dx-caramelo__titulo">Te preparamos un boceto de cómo quedaría la <span id="dxCarameloObjeto"></span> de <span class="dx-caramelo__nombre" id="dxCarameloNombre"></span></h3>
+        <p>Gratis, con tu logo y tus fotos.</p>
         <button type="button" class="dx-btn" data-ir="boceto">Quiero mi boceto</button>
       </div>
     </section>
@@ -173,10 +172,6 @@
           <p class="dx-error" hidden>Necesitamos tu autorización para preparar el boceto.</p>
         </div>
 
-        <div class="dx-aviso" id="dxEnvioError" role="alert" hidden>
-          <p>No hemos podido guardar tus datos. Vuelve a intentarlo o escríbenos directamente por WhatsApp.</p>
-          <a class="dx-enlace" id="dxEnvioErrorWhatsapp" href="https://wa.me/34611871937" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-        </div>
 
         <button type="submit" class="dx-btn" id="dxEnviar">Pedir mi boceto</button>
       </form>

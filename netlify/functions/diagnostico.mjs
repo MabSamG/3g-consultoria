@@ -6,7 +6,7 @@
 // Variables de entorno: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, RESEND_API_KEY, NOTIFY_EMAIL, RESEND_FROM (opcional)
 
 const TABLA = 'diagnosticos';
-const SECTORES = { estetica: 'Estética', peluqueria: 'Peluquería', moda: 'Moda', otro: 'Otro' };
+const SECTORES = { servicios: 'Servicios', comercio: 'Comercio', otros: 'Otros' };
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export default async (req) => {
