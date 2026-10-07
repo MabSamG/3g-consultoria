@@ -10,9 +10,11 @@
   --coral-claro: #F0805A;
   --petroleo: #215C60;
   --dorado: #BA7517;
-  --nombre-dorado: #FFC93C;   /* dorado brillante tirando a amarillo */
-  --nombre-petroleo: #5ED8D2; /* petróleo de la marca, claro y luminoso */
-  --nombre: var(--nombre-dorado);
+  /* Petróleo claro para el nombre del negocio (contraste sobre --bg-dark entre paréntesis) */
+  --nombre-claro: #45C4BF;  /* 6,6:1 */
+  --nombre-medio: #3AB5B0;  /* 5,6:1 */
+  --nombre-oscuro: #2FA8A3; /* 4,8:1 */
+  --nombre: var(--nombre-medio);
   --text-primary: #F5F5F3;
   --text-secondary: #A8A7A3;
   --step-bg: #3A3A37;
@@ -67,8 +69,8 @@ a {
 }
 
 .dx-header__logo {
-  width: 44px;
-  height: 44px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
 }
 
@@ -411,29 +413,14 @@ a {
   color: rgba(245, 245, 243, 0.85);
 }
 
-/* Primera parte en su propia línea; en el móvil se ajusta para que quepa entera */
-.dx-linea__intro {
-  display: block;
-  margin-bottom: 2px;
-}
-
-.dx-linea__mejora {
-  display: block;
-}
-
-@media (max-width: 400px) {
-  .dx-linea--dinero {
-    padding: 16px 16px;
-    font-size: 0.95rem;
-  }
-}
-
-.dx-cifra--clientes {
+.dx-linea__clientes {
+  font-weight: 600;
   color: #fff;
 }
 
 .dx-cifra--dinero {
-  font-size: 1.85rem;
+  margin: 8px 0 0;
+  font-size: 2.2rem;
   color: #fff;
 }
 
@@ -473,9 +460,14 @@ a {
   font-size: 1.3em;
 }
 
-/* TEMPORAL — comparar color del nombre (?color=dorado / ?color=petroleo) */
-.dx-color-dorado { --nombre: var(--nombre-dorado); }
-.dx-color-petroleo { --nombre: var(--nombre-petroleo); }
+.dx-gracias__nombre {
+  font-size: 1.2em;
+}
+
+/* TEMPORAL — comparar color del nombre (?color=claro / medio / oscuro) */
+.dx-color-claro { --nombre: var(--nombre-claro); }
+.dx-color-medio { --nombre: var(--nombre-medio); }
+.dx-color-oscuro { --nombre: var(--nombre-oscuro); }
 
 /* ---------- Pie ---------- */
 .dx-pie {
