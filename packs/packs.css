@@ -137,7 +137,7 @@
   }
 }
 
-/* ---------- Boceto gratis (en lugar de «Volver a todos los packs») ---------- */
+/* ---------- Prototipo gratis (en lugar de «Volver a todos los packs»; las clases conservan el nombre «boceto») ---------- */
 .pack-detail--impulso { --pack: var(--coral); --pack-texto: #1d1d1b; }
 .pack-detail--avanza { --pack: #2A8C88; --pack-texto: #fff; }
 .pack-detail--elite { --pack: var(--dorado); --pack-texto: #1d1d1b; }
@@ -204,8 +204,18 @@
   }
 
   .boceto-cta__btn {
-    padding: 13px 16px;
-    font-size: 0.95rem;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 13px 12px;
+    font-size: 0.92rem;
     gap: 8px;
+  }
+}
+
+/* «Pedir mi prototipo gratis» es largo: en móviles pequeños, sin el icono para que quepa en una línea */
+@media (max-width: 400px) {
+  .boceto-cta__icono {
+    display: none;
   }
 }

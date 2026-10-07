@@ -174,9 +174,9 @@ window.AGENTE_CONFIG = {
     },
     {
       id: "reunion",
-      keywords: ["visita", "presencial", "en persona", "zoom", "videollamada", "reunion", "reunirnos", "quedar", "cita", "boceto", "boceto gratis", "ejemplo de mi web", "muestra"],
+      keywords: ["visita", "presencial", "en persona", "zoom", "videollamada", "reunion", "reunirnos", "quedar", "cita", "boceto", "boceto gratis", "prototipo", "prototipo gratis", "ejemplo de mi web", "muestra"],
       question: "¿Podemos reunirnos?",
-      answer: "¡Claro! Puedes elegir una visita presencial, una reunión privada por Zoom o pedirnos un boceto gratis de tu web. Escríbenos por WhatsApp al 611 87 19 37 y lo concertamos."
+      answer: "¡Claro! Puedes elegir una visita presencial, una reunión privada por Zoom o pedirnos un prototipo gratis de tu web. Escríbenos por WhatsApp al 611 87 19 37 y lo concertamos."
     },
     {
       id: "dedicais",

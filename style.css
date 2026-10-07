@@ -689,6 +689,15 @@ section {
   line-height: 1.15;
 }
 
+/* Segunda línea destacada bajo el titular */
+.hero__pregunta {
+  margin-top: -6px;
+  color: var(--coral);
+  font-size: clamp(1.2rem, 4.2vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
 .hero__subtitle {
   color: var(--text-secondary);
   font-size: clamp(1rem, 2.5vw, 1.25rem);

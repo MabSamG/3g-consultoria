@@ -20,7 +20,7 @@ const BOCETO_SECTOR = { servicios: 'web', comercio: 'tienda online', otros: 'web
 const WHATSAPP_3G = '34611871937';
 const TIEMPO_MAX_GUARDADO = 8000; // ms
 // Cambiar si se modifica el texto de la casilla de consentimiento
-const CONSENTIMIENTO_VERSION = '2026-10-06';
+const CONSENTIMIENTO_VERSION = '2026-10-07'; // «boceto» → «prototipo»
 
 (function () {
   'use strict';
@@ -342,7 +342,7 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
     } finally {
       enviando = false;
       boton.disabled = false;
-      boton.textContent = 'Pedir mi boceto';
+      boton.textContent = 'Pedir mi prototipo';
     }
     ir('gracias');
   });
@@ -351,7 +351,7 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
 
   function enlaceWhatsapp() {
     const nombre = form.elements.nombre.value.trim();
-    const texto = `Hola, soy ${nombre} de ${respuestas.negocio}, acabo de pedir el boceto de mi web.`;
+    const texto = `Hola, soy ${nombre} de ${respuestas.negocio}, acabo de pedir el prototipo de mi web.`;
     return `https://wa.me/${WHATSAPP_3G}?text=${encodeURIComponent(texto)}`;
   }
 
