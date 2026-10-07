@@ -1,6 +1,6 @@
 /* ============================================================
    agente-config.js
-   Contenido del Agente IA de 3G. Aquí se define TODO lo que el
+   Contenido del asistente virtual de 3G. Aquí se define TODO lo que el
    asistente "sabe" responder — no hay ninguna IA real detrás,
    solo coincidencia de palabras clave contra este listado.
 
@@ -39,7 +39,7 @@ window.AGENTE_CONFIG = {
       id: "precios_planes",
       keywords: ["precio de los planes", "precios", "cuanto cuestan los planes", "cuanto cuesta", "cuanto vale", "cuanto cobrais", "tarifas", "presupuesto"],
       question: "Ver precios de los planes",
-      answer: "Nuestros planes: Plan Impulso 299€ + IVA (antes 598€), Plan Avanza 499€ + IVA (antes 998€) y Plan Elite desde 799€ + IVA (antes 1.598€). Los tres con opción de financiación subvencionada a 1 año sin intereses: 23€/mes, 42€/mes y 66€/mes + IVA."
+      answer: "Promoción limitada a los 10 primeros clientes: Plan Impulso 299€ + IVA (antes 598€), Plan Avanza 499€ + IVA (antes 998€) y Plan Elite desde 799€ + IVA (antes 1.598€). Los tres con opción de financiación subvencionada a 1 año sin intereses: 23€/mes, 42€/mes y 66€/mes + IVA."
     },
     {
       id: "info_general",
@@ -77,25 +77,25 @@ window.AGENTE_CONFIG = {
       id: "plan_impulso",
       keywords: ["impulso", "plan impulso", "plan basico", "el mas barato", "pack impulso", "pack basico", "basico"],
       question: "¿Qué incluye el Plan Impulso?",
-      answer: "El Plan Impulso incluye tu página web profesional, optimizada para móvil, con botón de WhatsApp, Agente IA y Google Business. Ahora en promoción por 299€ + IVA (antes 598€), con opción de financiación a 1 año por 23€/mes + IVA."
+      answer: "El Plan Impulso incluye tu página web profesional, optimizada para móvil, con botón de WhatsApp, asistente virtual 24/7 y Google Business. En promoción para los 10 primeros clientes por 299€ + IVA (antes 598€), con opción de financiación a 1 año por 23€/mes + IVA."
     },
     {
       id: "plan_avanza",
       keywords: ["avanza", "plan avanza", "reservas", "reservas online", "tienda local", "pack avanza", "plan medio", "intermedio", "negocio local"],
       question: "¿Qué incluye el Plan Avanza?",
-      answer: "El Plan Avanza añade al Plan Impulso una tienda local con opción a reservas, gestión de stock y backoffice sencilla. Ahora en promoción por 499€ + IVA (antes 998€), con opción de financiación a 1 año por 42€/mes + IVA."
+      answer: "El Plan Avanza añade al Plan Impulso una tienda local con opción a reservas, gestión de stock y backoffice sencilla. En promoción para los 10 primeros clientes por 499€ + IVA (antes 998€), con opción de financiación a 1 año por 42€/mes + IVA."
     },
     {
       id: "plan_elite",
       keywords: ["elite", "plan elite", "pack elite", "tienda virtual", "tienda online", "tienda en linea", "vender online", "vender por internet", "ecommerce", "comercio electronico", "cuanto vale una tienda", "cuanto cuesta una tienda", "precio de una tienda", "carrito de compra", "pasarela de pago", "tienda completa", "superior", "completo"],
       question: "¿Qué incluye el Plan Elite?",
-      answer: "El Plan Elite es tu tienda virtual completa: web profesional con carrito de compra, pasarela de pagos online (Bizum, transferencia y tarjeta), CRM y cálculo de envíos. Ahora en promoción desde 799€ + IVA (antes 1.598€), con opción de financiación a 1 año por 66€/mes + IVA."
+      answer: "El Plan Elite es tu tienda virtual completa: web profesional con carrito de compra, pasarela de pagos online (Bizum, transferencia y tarjeta), CRM y cálculo de envíos. En promoción para los 10 primeros clientes desde 799€ + IVA (antes 1.598€), con opción de financiación a 1 año por 66€/mes + IVA."
     },
     {
       id: "financiacion",
       keywords: ["oferta", "promocion", "financiacion", "financiar", "a plazos", "pagar a plazos", "fraccionar", "cuotas", "mensualidad", "al mes", "subvencion"],
       question: "Opción de financiación",
-      answer: "Ahora, y por tiempo limitado, todos los planes tienen opción de financiación subvencionada a 1 año sin intereses: Impulso 23€/mes, Avanza 42€/mes y Elite 66€/mes, + IVA."
+      answer: "Ahora mismo, todos los planes tienen opción de financiación subvencionada a 1 año sin intereses: Impulso 23€/mes, Avanza 42€/mes y Elite 66€/mes, + IVA."
     },
     {
       // Cómo se nos paga a nosotros: no se publica, se explica en el presupuesto

@@ -5,16 +5,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>3G Tres Generaciones — Diseño, tecnología y consultoría estratégica</title>
-  <meta name="description" content="3G Tres Generaciones: tres generaciones de una misma familia asesorando, diseñando y desarrollando negocios como el tuyo. Diseño, tecnología y consultoría estratégica en un solo equipo.">
+  <title>Diseño web y consultoría en Alicante | 3G Tres Generaciones</title>
+  <meta name="description" content="Páginas web, tiendas online, branding y consultoría para negocios. Un equipo familiar de tres generaciones en Elche (Alicante). Pide tu presupuesto.">
   <link rel="canonical" href="https://3gtresgeneraciones.com/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://3gtresgeneraciones.com/">
-  <meta property="og:title" content="3G Tres Generaciones — Tú sueñas. Nosotros lo hacemos realidad.">
-  <meta property="og:description" content="Diseño, tecnología y consultoría — tres generaciones detrás de cada proyecto.">
-  <meta property="og:image" content="https://3gtresgeneraciones.com/assets/3G_logo_horizontal.png">
+  <meta property="og:title" content="Diseño web y consultoría en Alicante | 3G Tres Generaciones">
+  <meta property="og:description" content="Páginas web, tiendas online, branding y consultoría para negocios. Un equipo familiar de tres generaciones en Elche (Alicante). Pide tu presupuesto.">
+  <meta property="og:image" content="https://3gtresgeneraciones.com/assets/og-3g-tres-generaciones.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="3G Tres Generaciones — Diseño, tecnología y consultoría">
+  <meta property="og:site_name" content="3G Tres Generaciones">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
@@ -22,34 +28,76 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
 
   <!-- Fuentes -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="/assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
 
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="agente.css">
 
   <!-- Datos estructurados -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "3G Tres Generaciones",
-    "url": "https://3gtresgeneraciones.com/",
-    "logo": "https://3gtresgeneraciones.com/assets/3G_logo_horizontal.png",
-    "image": "https://3gtresgeneraciones.com/assets/3G_logo_horizontal.png",
-    "description": "Diseño, tecnología y consultoría estratégica para negocios en España.",
-    "sameAs": [
-      "https://www.instagram.com/3gconsultoria/"
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://3gtresgeneraciones.com/#negocio",
+      "name": "3G Tres Generaciones",
+      "legalName": "ASSURE INVEST DEVELOPMENT PROJECTS SL",
+      "taxID": "B90454943",
+      "url": "https://3gtresgeneraciones.com/",
+      "logo": "https://3gtresgeneraciones.com/assets/3G_logo_icono.png",
+      "image": "https://3gtresgeneraciones.com/assets/og-3g-tres-generaciones.jpg",
+      "description": "Diseño web, tiendas online, branding y consultoría para negocios. Un equipo familiar de tres generaciones en Elche (Alicante).",
       "telephone": "+34 611 87 19 37",
-      "contactType": "customer service",
-      "areaServed": "ES",
-      "availableLanguage": ["Spanish"]
+      "email": "info@3gtresgeneraciones.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Elche",
+        "addressRegion": "Alicante",
+        "addressCountry": "ES"
+      },
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Provincia de Alicante"
+        },
+        {
+          "@type": "Country",
+          "name": "España"
+        }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "09:30",
+          "closes": "15:00"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/3gtresgeneraciones/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://3gtresgeneraciones.com/#web",
+      "name": "3G Tres Generaciones",
+      "url": "https://3gtresgeneraciones.com/",
+      "inLanguage": "es-ES",
+      "publisher": {
+        "@id": "https://3gtresgeneraciones.com/#negocio"
+      }
     }
-  }
+  ]
+}
   </script>
 </head>
 <body>
@@ -58,7 +106,7 @@
   <nav class="site-nav" id="site-nav">
     <div class="site-nav__inner">
       <a class="site-nav__logo" href="#hero" aria-label="Inicio — 3G Tres Generaciones">
-        <img src="assets/3G_logo_icono.png" alt="3G Tres Generaciones">
+        <img src="assets/3G_logo_icono.png" alt="3G Tres Generaciones" width="46" height="46">
       </a>
       <ul class="site-nav__links">
         <li><a href="#hero">Inicio</a></li>
@@ -89,7 +137,7 @@
 
     <div class="hero__content reveal">
       <div class="hero__logo-lockup">
-        <img class="hero__logo-icon" src="assets/3G_logo_icono.png" alt="3G Tres Generaciones">
+        <img class="hero__logo-icon" src="assets/3G_logo_icono.png" alt="3G Tres Generaciones" width="208" height="208">
         <div class="hero__logo-text">
           <span class="hero__logo-3g">3G</span>
           <span class="hero__logo-name">TRES GENERACIONES</span>
@@ -117,10 +165,12 @@
     <div class="blob blob--dorado blob--faint blob--small" aria-hidden="true"></div>
     <div class="blob blob--petroleo blob--faint" aria-hidden="true"></div>
 
+    <h2 class="packs__title reveal">Packs de página web</h2>
+
     <div class="packs__banner reveal">
       <p class="packs__banner-text">
         <span class="packs__banner-emoji" aria-hidden="true">🔥</span>
-        50% DESCUENTO sobre el precio de lanzamiento de los 3 planes — <span class="packs__banner-highlight">Promoción por tiempo limitado</span>
+        50% DESCUENTO sobre el precio de lanzamiento de los 3 planes — <span class="packs__banner-highlight">Promoción limitada a los 10 primeros clientes</span>
       </p>
       <p class="packs__banner-financing">Opción de financiación subvencionada a 1 año sin intereses</p>
     </div>
@@ -213,8 +263,9 @@
     <div class="about__inner reveal">
       <div class="about__image-box">
         <img
-          src="assets/3G_equipo_ilustracion.png"
+          src="assets/3G_equipo_ilustracion.webp"
           alt="Ilustración del equipo de 3G Tres Generaciones"
+          width="1000" height="648" loading="lazy" decoding="async"
         >
       </div>
 
@@ -337,6 +388,8 @@
       </a>
     </div>
 
+    <p class="contact-options__email reveal">O escríbenos a <a href="mailto:info@3gtresgeneraciones.com">info@3gtresgeneraciones.com</a></p>
+
     <p class="contact-options__intro reveal">O elige cómo prefieres empezar:</p>
     <div class="contact-options reveal">
 
@@ -379,10 +432,10 @@
   <!-- ===================== FOOTER ===================== -->
   <footer class="footer">
     <div class="footer__social">
-      <img src="assets/3G_logo_icono.png" alt="3G Tres Generaciones" class="footer__logo">
+      <img src="assets/3G_logo_icono.png" alt="3G Tres Generaciones" class="footer__logo" width="48" height="48" loading="lazy">
       <div class="footer__handle">
-        <span>@3gconsultoria</span>
-        <a href="https://www.instagram.com/3gconsultoria/" target="_blank" rel="noopener" aria-label="Instagram de 3G Tres Generaciones">
+        <span>@3gtresgeneraciones</span>
+        <a href="https://www.instagram.com/3gtresgeneraciones/" target="_blank" rel="noopener" aria-label="Instagram de 3G Tres Generaciones">
           <svg class="footer__ig-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="2" y="2" width="20" height="20" rx="6" stroke="currentColor" stroke-width="2"/>
             <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
@@ -392,7 +445,8 @@
       </div>
     </div>
     <p class="footer__tagline">Diseño · Tecnología · Consultoría</p>
-    <p class="footer__legal">© 2026 3G Tres Generaciones. Todos los derechos reservados. · <a href="/privacidad/">Política de privacidad</a></p>
+    <p class="footer__email"><a href="mailto:info@3gtresgeneraciones.com">info@3gtresgeneraciones.com</a></p>
+    <p class="footer__legal">© 2026 3G Tres Generaciones. Todos los derechos reservados. · <a href="/aviso-legal/">Aviso legal</a> · <a href="/privacidad/">Política de privacidad</a></p>
   </footer>
 
   <!-- ===================== BOTÓN FLOTANTE (móvil) ===================== -->

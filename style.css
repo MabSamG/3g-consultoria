@@ -279,6 +279,117 @@ section {
   }
 }
 
+/* ---------- Menú de hamburguesa (móvil) ---------- */
+.site-nav__toggle {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .site-nav.has-toggle .site-nav__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-left: auto;
+    background: none;
+    border: 1px solid rgba(245, 245, 243, 0.18);
+    border-radius: 12px;
+    color: var(--text-primary);
+    cursor: pointer;
+  }
+
+  .site-nav__toggle-icon,
+  .site-nav__toggle-icon::before,
+  .site-nav__toggle-icon::after {
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .site-nav__toggle-icon {
+    position: relative;
+  }
+
+  .site-nav__toggle-icon::before,
+  .site-nav__toggle-icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+  }
+
+  .site-nav__toggle-icon::before { top: -6px; }
+  .site-nav__toggle-icon::after { top: 6px; }
+
+  .site-nav.is-menu-open .site-nav__toggle-icon { background: transparent; }
+  .site-nav.is-menu-open .site-nav__toggle-icon::before { transform: translateY(6px) rotate(45deg); }
+  .site-nav.is-menu-open .site-nav__toggle-icon::after { transform: translateY(-6px) rotate(-45deg); }
+
+  .site-nav.has-toggle .site-nav__inner {
+    flex-wrap: wrap;
+  }
+
+  .site-nav.is-menu-open {
+    background: var(--bg-dark);
+  }
+
+  .site-nav.has-toggle .site-nav__links {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 0 12px;
+    overflow: visible;
+  }
+
+  .site-nav.has-toggle.is-menu-open .site-nav__links {
+    display: flex;
+  }
+
+  .site-nav.has-toggle .site-nav__links a {
+    display: block;
+    padding: 12px 4px;
+    font-size: 0.9rem;
+  }
+
+  .site-nav.has-toggle .site-nav__links > li + li {
+    border-top: 1px solid rgba(245, 245, 243, 0.08);
+  }
+
+  /* «Packs» y sus tres packs siempre a la vista dentro del menú abierto */
+  .site-nav.has-toggle .site-nav__item--dropdown {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .site-nav.has-toggle .site-nav__caret {
+    display: none;
+  }
+
+  .site-nav.has-toggle .site-nav__submenu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+    min-width: 0;
+    padding: 0 0 6px 16px;
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  .site-nav.has-toggle .site-nav__submenu a {
+    padding: 9px 4px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+}
+
 /* ---------- Desplegable "Packs" en el nav ---------- */
 .site-nav__item--dropdown {
   position: relative;
@@ -482,6 +593,20 @@ section {
   height: 28px;
 }
 
+@media (max-width: 600px) {
+  .sticky-whatsapp {
+    width: 52px;
+    height: 52px;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .sticky-whatsapp .btn__icon {
+    width: 26px;
+    height: 26px;
+  }
+}
+
 @media (min-width: 1100px) {
   .sticky-whatsapp {
     display: none;
@@ -588,7 +713,7 @@ section {
   gap: 24px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .services__grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -627,7 +752,8 @@ section {
   font-size: 0.98rem;
 }
 
-.services__title {
+.services__title,
+.packs__title {
   position: relative;
   z-index: 1;
   max-width: 1100px;
@@ -714,6 +840,13 @@ section {
   white-space: nowrap;
 }
 
+/* En móvil la frase de la promoción es más larga que la pantalla: que pueda partirse */
+@media (max-width: 600px) {
+  .packs__banner-highlight {
+    white-space: normal;
+  }
+}
+
 .packs__banner-financing {
   color: #FFFFFF;
   opacity: 0.95;
@@ -734,7 +867,7 @@ section {
   gap: 24px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .packs__grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -1203,7 +1336,17 @@ section {
   width: 2px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
+  .process__track {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .process__line {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
   .process__track {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -1374,6 +1517,25 @@ section {
 }
 
 /* Opciones de contacto (visita, Zoom, boceto) */
+.contact-options__email {
+  position: relative;
+  z-index: 1;
+  margin-top: 24px;
+  color: var(--text-secondary);
+}
+
+.contact-options__email a,
+.footer__email a {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer__email {
+  font-size: 0.9rem;
+}
+
 .contact-options__intro {
   position: relative;
   z-index: 1;
@@ -1392,9 +1554,18 @@ section {
   text-align: left;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .contact-options {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablet: una columna centrada en vez de tres columnas estrechas */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .services__grid,
+  .packs__grid,
+  .contact-options {
+    max-width: 640px;
   }
 }
 

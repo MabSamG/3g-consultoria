@@ -37,6 +37,38 @@ if (stickyWhatsapp && ctaFinal) {
 }
 
 // Desplegable "Packs" del menú.
+// Menú de hamburguesa en móvil: el botón se crea aquí para no repetirlo
+// en cada página. Sin JS, los enlaces siguen deslizándose como antes.
+const siteNav = document.getElementById('site-nav');
+const navLinks = siteNav && siteNav.querySelector('.site-nav__links');
+if (siteNav && navLinks) {
+  navLinks.id = navLinks.id || 'site-nav-links';
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'site-nav__toggle';
+  toggle.setAttribute('aria-controls', navLinks.id);
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-label', 'Abrir el menú');
+  toggle.innerHTML = '<span class="site-nav__toggle-icon" aria-hidden="true"></span>';
+  navLinks.before(toggle);
+  siteNav.classList.add('has-toggle');
+
+  const setMenu = (open) => {
+    siteNav.classList.toggle('is-menu-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Cerrar el menú' : 'Abrir el menú');
+  };
+
+  toggle.addEventListener('click', () => setMenu(!siteNav.classList.contains('is-menu-open')));
+  // Al elegir un enlace (también los de la misma página, #servicios…) se cierra el menú
+  navLinks.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setMenu(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setMenu(false);
+  });
+}
+
 // El submenú es position:fixed (para no quedar recortado por el
 // overflow-x:auto de .site-nav__links) así que su posición se calcula
 // en JS a partir del <li> que lo contiene. Se abre con hover/foco en

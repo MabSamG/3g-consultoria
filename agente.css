@@ -1,6 +1,6 @@
 /* ============================================================
    agente.css
-   Estilos del Agente IA (widget flotante de preguntas y
+   Estilos del asistente virtual (widget flotante de preguntas y
    respuestas predefinidas). Usa variables CSS para que sea
    fácil adaptarlo a la paleta real de cada sitio: sobrescribe
    estas variables en tu propio style.css, o cámbialas aquí.
@@ -217,15 +217,17 @@
    el más importante de los dos. */
 @media (max-width: 600px){
   #agente-launcher{
-    width: 64px;
-    height: 64px;
+    width: 58px;
+    height: 58px;
+    bottom: 80px;
     padding: 0;
     border-radius: 50%;
     justify-content: center;
     box-shadow: 0 10px 24px rgba(0,0,0,.35);
   }
   #agente-launcher span{ display: none; }
-  #agente-launcher svg{ width: 28px; height: 28px; }
+  #agente-launcher svg{ width: 26px; height: 26px; }
+  #agente-panel{ bottom: 148px; }
 }
 
 @media (max-width: 420px){

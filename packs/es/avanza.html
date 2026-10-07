@@ -5,16 +5,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Tienda Local con Reservas Online en España desde 499€ | Plan Avanza — 3G Tres Generaciones</title>
-  <meta name="description" content="El 70% busca en Google antes de comprar en un negocio local en España. Tienda local con opción a reservas, gestión de stock y backoffice incluidos. 50% de descuento.">
+  <title>Plan Avanza: web con reservas online desde 499 € + IVA</title>
+  <meta name="description" content="Tu web con tienda local, reservas online y gestión de stock, con asistente virtual 24/7 y Google Business. 50% de descuento y opción de financiación.">
   <link rel="canonical" href="https://3gtresgeneraciones.com/packs/es/avanza.html">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://3gtresgeneraciones.com/packs/es/avanza.html">
-  <meta property="og:title" content="Tienda Local con Reservas Online en España desde 499€ | Plan Avanza">
-  <meta property="og:description" content="El 70% busca en Google antes de comprar en un negocio local. Tienda local con opción a reservas, gestión de stock y backoffice incluidos.">
-  <meta property="og:image" content="https://3gtresgeneraciones.com/assets/3G_logo_horizontal.png">
+  <meta property="og:title" content="Plan Avanza: web con reservas online desde 499 € + IVA">
+  <meta property="og:description" content="Tu web con tienda local, reservas online y gestión de stock, con asistente virtual 24/7 y Google Business. 50% de descuento y opción de financiación.">
+  <meta property="og:image" content="https://3gtresgeneraciones.com/assets/og-3g-tres-generaciones.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="3G Tres Generaciones — Diseño, tecnología y consultoría">
+  <meta property="og:site_name" content="3G Tres Generaciones">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
@@ -22,9 +28,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
 
   <!-- Fuentes -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="/assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
 
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="../../agente.css">
@@ -32,22 +38,66 @@
 
   <!-- Datos estructurados -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "Plan Avanza — Tienda Local con Reservas Online",
-    "description": "Tienda local con opción a reservas, gestión de stock y backoffice incluidos.",
-    "brand": { "@type": "Organization", "name": "3G Tres Generaciones" },
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "EUR",
-      "price": "499",
-      "priceSpecification": { "@type": "UnitPriceSpecification", "price": "499", "priceCurrency": "EUR", "valueAddedTaxIncluded": false },
-      "url": "https://3gtresgeneraciones.com/packs/es/avanza.html",
-      "areaServed": "ES",
-      "availability": "https://schema.org/InStock"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://3gtresgeneraciones.com/#negocio",
+      "name": "3G Tres Generaciones",
+      "url": "https://3gtresgeneraciones.com/"
+    },
+    {
+      "@type": "Product",
+      "name": "Plan Avanza — Tienda Local con Reservas Online",
+      "description": "Tienda local con opción a reservas, gestión de stock y backoffice incluidos.",
+      "brand": {
+        "@id": "https://3gtresgeneraciones.com/#negocio"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "EUR",
+        "price": "499",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "499",
+          "priceCurrency": "EUR",
+          "valueAddedTaxIncluded": false
+        },
+        "url": "https://3gtresgeneraciones.com/packs/es/avanza.html",
+        "areaServed": "ES",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@id": "https://3gtresgeneraciones.com/#negocio"
+        }
+      },
+      "image": "https://3gtresgeneraciones.com/assets/og-3g-tres-generaciones.jpg"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://3gtresgeneraciones.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Packs",
+          "item": "https://3gtresgeneraciones.com/packs/es/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Plan Avanza",
+          "item": "https://3gtresgeneraciones.com/packs/es/avanza.html"
+        }
+      ]
     }
-  }
+  ]
+}
   </script>
 </head>
 <body>
@@ -56,7 +106,7 @@
   <nav class="site-nav" id="site-nav">
     <div class="site-nav__inner">
       <a class="site-nav__logo" href="../../index.html" aria-label="Inicio — 3G Tres Generaciones">
-        <img src="../../assets/3G_logo_icono.png" alt="3G Tres Generaciones">
+        <img src="../../assets/3G_logo_icono.png" alt="3G Tres Generaciones" width="46" height="46">
       </a>
       <ul class="site-nav__links">
         <li><a href="../../index.html#hero">Inicio</a></li>
@@ -97,7 +147,7 @@
     <div class="packs__banner reveal">
       <p class="packs__banner-text">
         <span class="packs__banner-emoji" aria-hidden="true">🔥</span>
-        PROMOCIÓN LIMITADA: <span class="packs__banner-highlight">50% DE DESCUENTO</span>
+        PROMOCIÓN LIMITADA A LOS 10 PRIMEROS CLIENTES: <span class="packs__banner-highlight">50% DE DESCUENTO</span>
       </p>
       <p class="plan-banner__financing">Opción de financiación subvencionada a 1 año sin intereses — por solo 42€/mes&nbsp;<span class="precio-iva">+&nbsp;IVA</span></p>
     </div>
@@ -150,7 +200,7 @@
               <p class="plan-features__text">Recibe cotizaciones directas sin pasos complicados.</p>
             </li>
             <li class="plan-features__item">
-              <h3 class="plan-features__title">Agente IA de Atención al Cliente</h3>
+              <h3 class="plan-features__title">Asistente Virtual 24/7 de Atención al Cliente</h3>
               <p class="plan-features__text">Responde al instante las preguntas frecuentes de tus clientes, 24/7.</p>
             </li>
             <li class="plan-features__item">
@@ -205,10 +255,10 @@
   <!-- ===================== FOOTER ===================== -->
   <footer class="footer">
     <div class="footer__social">
-      <img src="../../assets/3G_logo_icono.png" alt="3G Tres Generaciones" class="footer__logo">
+      <img src="../../assets/3G_logo_icono.png" alt="3G Tres Generaciones" class="footer__logo" width="48" height="48" loading="lazy">
       <div class="footer__handle">
-        <span>@3gconsultoria</span>
-        <a href="https://www.instagram.com/3gconsultoria/" target="_blank" rel="noopener" aria-label="Instagram de 3G Tres Generaciones">
+        <span>@3gtresgeneraciones</span>
+        <a href="https://www.instagram.com/3gtresgeneraciones/" target="_blank" rel="noopener" aria-label="Instagram de 3G Tres Generaciones">
           <svg class="footer__ig-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="2" y="2" width="20" height="20" rx="6" stroke="currentColor" stroke-width="2"/>
             <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
@@ -218,7 +268,8 @@
       </div>
     </div>
     <p class="footer__tagline">Diseño · Tecnología · Consultoría</p>
-    <p class="footer__legal">© 2026 3G Tres Generaciones. Todos los derechos reservados. · <a href="/privacidad/">Política de privacidad</a></p>
+    <p class="footer__email"><a href="mailto:info@3gtresgeneraciones.com">info@3gtresgeneraciones.com</a></p>
+    <p class="footer__legal">© 2026 3G Tres Generaciones. Todos los derechos reservados. · <a href="/aviso-legal/">Aviso legal</a> · <a href="/privacidad/">Política de privacidad</a></p>
   </footer>
 
   <!-- ===================== BOTÓN FLOTANTE (móvil) ===================== -->

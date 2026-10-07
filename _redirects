@@ -1,0 +1,4 @@
+# La dirección interna de Netlify redirige al dominio propio (evita contenido duplicado en Google).
+# Solo afecta a darling-sunflower-9235b1.netlify.app; las vistas previas de Netlify usan otras direcciones.
+https://darling-sunflower-9235b1.netlify.app/*  https://3gtresgeneraciones.com/:splat  301!
+http://darling-sunflower-9235b1.netlify.app/*   https://3gtresgeneraciones.com/:splat  301!

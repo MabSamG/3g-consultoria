@@ -1,6 +1,6 @@
 /* ============================================================
    agente.js
-   Widget de "Agente IA" conversacional — 100% en el cliente,
+   Widget del asistente virtual conversacional — 100% en el cliente,
    sin llamadas a ningún servidor ni API de IA real.
 
    Cómo "entiende" al cliente: cuando escribe un mensaje, se
@@ -21,7 +21,7 @@
 (function(){
   const cfg = window.AGENTE_CONFIG;
   if(!cfg){
-    console.warn("Agente IA: falta agente-config.js");
+    console.warn("Asistente virtual: falta agente-config.js");
     return;
   }
 
@@ -166,14 +166,14 @@
   // ---------- construir el HTML del widget ----------
   const launcher = document.createElement("button");
   launcher.id = "agente-launcher";
-  launcher.setAttribute("aria-label", "Abrir Agente Virtual");
+  launcher.setAttribute("aria-label", "Abrir asistente virtual");
   launcher.innerHTML = `
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M4 14v-2a8 8 0 0 1 16 0v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
       <rect x="2" y="14" width="5" height="7" rx="2.2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
       <rect x="17" y="14" width="5" height="7" rx="2.2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
     </svg>
-    <span>Agente Virtual</span>`;
+    <span>Asistente virtual</span>`;
 
   const panel = document.createElement("div");
   panel.id = "agente-panel";
@@ -187,7 +187,7 @@
         </svg>
       </div>
       <div id="agente-header-text">
-        <div class="title">Asistente Virtual</div>
+        <div class="title">Asistente virtual 24/7</div>
         <div class="subtitle"><span class="agente-dot"></span>${cfg.nombreNegocio || ""} · en línea</div>
       </div>
       <button id="agente-close" aria-label="Cerrar chat">&times;</button>
