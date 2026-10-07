@@ -64,6 +64,7 @@
           // Las frases pesan tanto como palabras tienen: "pagar a plazos" gana a "plazos"
           if(k && text.includes(` ${k} `)) score += k.split(" ").length;
         });
+        score *= faq.peso || 1;
         if(score > bestScore){
           bestScore = score;
           best = faq;

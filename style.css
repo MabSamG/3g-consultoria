@@ -792,6 +792,21 @@ section {
 .pack-card--avanza .pack-card__price-new { color: var(--petroleo); }
 .pack-card--elite .pack-card__price-new { color: var(--dorado); }
 
+/* «+ IVA»: pegado al precio, más pequeño y suave para que destaque el precio */
+.precio-iva {
+  font-size: 0.42em;
+  font-weight: 600;
+  opacity: 0.7;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+.plan-card__monthly .precio-iva,
+.plan-banner__financing .precio-iva,
+.packs__banner-financing .precio-iva {
+  font-size: 0.85em;
+}
+
 .pack-card__list {
   list-style: none;
   margin: 0;

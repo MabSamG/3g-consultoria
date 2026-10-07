@@ -10,7 +10,8 @@
      keywords: ["palabra1", "palabra2", ...],  // sin tildes, en minúsculas
      question: "Texto corto para mostrar como sugerencia (chip)",
      answer: "Lo que responde el asistente",
-     showWhatsapp: true   // opcional: añade el botón de WhatsApp tras la respuesta
+     showWhatsapp: true,  // opcional: añade el botón de WhatsApp tras la respuesta
+     peso: 5              // opcional: multiplica la puntuación (por defecto 1)
    }
 
    - "keywords" debe incluir varias formas en que un cliente podría
@@ -31,14 +32,14 @@ window.AGENTE_CONFIG = {
   fallback: "No estoy seguro de haber entendido bien eso. Puedes elegir una de estas preguntas, o hablar directamente con nosotros por WhatsApp:",
 
   // ids de las FAQs que se muestran como sugerencias (al inicio y en el fallback)
-  sugerenciasIniciales: ["servicios", "precios_planes", "pago", "reunion"],
+  sugerenciasIniciales: ["servicios", "precios_planes", "financiacion", "reunion"],
 
   faqs: [
     {
       id: "precios_planes",
       keywords: ["precio de los planes", "precios", "cuanto cuestan los planes", "cuanto cuesta", "cuanto vale", "cuanto cobrais", "tarifas", "presupuesto"],
       question: "Ver precios de los planes",
-      answer: "Nuestros planes: Plan Impulso 299€ (antes 598€), Plan Avanza 499€ (antes 998€) y Plan Elite desde 799€ (antes 1.598€). Los tres con opción de financiación subvencionada a 1 año sin intereses: 23€/mes, 42€/mes y 66€/mes."
+      answer: "Nuestros planes: Plan Impulso 299€ + IVA (antes 598€), Plan Avanza 499€ + IVA (antes 998€) y Plan Elite desde 799€ + IVA (antes 1.598€). Los tres con opción de financiación subvencionada a 1 año sin intereses: 23€/mes, 42€/mes y 66€/mes + IVA."
     },
     {
       id: "info_general",
@@ -64,7 +65,7 @@ window.AGENTE_CONFIG = {
       id: "comparar",
       keywords: ["diferencia", "diferencias", "comparar", "comparativa", "cual me recomiendas", "cual me recomendais", "cual elijo", "que plan", "que pack", "cual es mejor", "cual necesito"],
       question: "¿Qué plan me conviene?",
-      answer: "En resumen: Impulso (299€) es tu página web profesional. Avanza (499€) añade una tienda local con reservas y gestión de stock. Elite (desde 799€) es la tienda online completa, con carrito, pagos online, CRM y cálculo de envíos. Si nos cuentas tu negocio por WhatsApp, te decimos cuál te encaja."
+      answer: "En resumen: Impulso (299€ + IVA) es tu página web profesional. Avanza (499€ + IVA) añade una tienda local con reservas y gestión de stock. Elite (desde 799€ + IVA) es la tienda online completa, con carrito, pagos online, CRM y cálculo de envíos. Si nos cuentas tu negocio por WhatsApp, te decimos cuál te encaja."
     },
     {
       id: "contratar",
@@ -76,38 +77,45 @@ window.AGENTE_CONFIG = {
       id: "plan_impulso",
       keywords: ["impulso", "plan impulso", "plan basico", "el mas barato", "pack impulso", "pack basico", "basico"],
       question: "¿Qué incluye el Plan Impulso?",
-      answer: "El Plan Impulso incluye tu página web profesional, optimizada para móvil, con botón de WhatsApp, Agente IA y Google Business. Ahora en promoción por 299€ (antes 598€), con opción de financiación a 1 año por 23€/mes."
+      answer: "El Plan Impulso incluye tu página web profesional, optimizada para móvil, con botón de WhatsApp, Agente IA y Google Business. Ahora en promoción por 299€ + IVA (antes 598€), con opción de financiación a 1 año por 23€/mes + IVA."
     },
     {
       id: "plan_avanza",
       keywords: ["avanza", "plan avanza", "reservas", "reservas online", "tienda local", "pack avanza", "plan medio", "intermedio", "negocio local"],
       question: "¿Qué incluye el Plan Avanza?",
-      answer: "El Plan Avanza añade al Plan Impulso una tienda local con opción a reservas, gestión de stock y backoffice sencilla. Ahora en promoción por 499€ (antes 998€), con opción de financiación a 1 año por 42€/mes."
+      answer: "El Plan Avanza añade al Plan Impulso una tienda local con opción a reservas, gestión de stock y backoffice sencilla. Ahora en promoción por 499€ + IVA (antes 998€), con opción de financiación a 1 año por 42€/mes + IVA."
     },
     {
       id: "plan_elite",
       keywords: ["elite", "plan elite", "pack elite", "tienda virtual", "tienda online", "tienda en linea", "vender online", "vender por internet", "ecommerce", "comercio electronico", "cuanto vale una tienda", "cuanto cuesta una tienda", "precio de una tienda", "carrito de compra", "pasarela de pago", "tienda completa", "superior", "completo"],
       question: "¿Qué incluye el Plan Elite?",
-      answer: "El Plan Elite es tu tienda virtual completa: web profesional con carrito de compra, pasarela de pagos online (transferencia y tarjeta), CRM y cálculo de envíos. Ahora en promoción desde 799€ (antes 1.598€), con opción de financiación a 1 año por 66€/mes."
+      answer: "El Plan Elite es tu tienda virtual completa: web profesional con carrito de compra, pasarela de pagos online (Bizum, transferencia y tarjeta), CRM y cálculo de envíos. Ahora en promoción desde 799€ + IVA (antes 1.598€), con opción de financiación a 1 año por 66€/mes + IVA."
     },
     {
+      id: "financiacion",
+      keywords: ["oferta", "promocion", "financiacion", "financiar", "a plazos", "pagar a plazos", "fraccionar", "cuotas", "mensualidad", "al mes", "subvencion"],
+      question: "Opción de financiación",
+      answer: "Ahora, y por tiempo limitado, todos los planes tienen opción de financiación subvencionada a 1 año sin intereses: Impulso 23€/mes, Avanza 42€/mes y Elite 66€/mes, + IVA."
+    },
+    {
+      // Cómo se nos paga a nosotros: no se publica, se explica en el presupuesto
       id: "pago",
-      keywords: ["pago", "pagar", "formas de pago", "como pago", "oferta", "promocion", "financiacion", "financiar", "a plazos", "pagar a plazos", "fraccionar", "cuotas", "mensualidad", "al mes", "subvencion"],
-      question: "¿Cómo puedo pagar?",
-      answer: "Ahora, y por tiempo limitado, todos los planes tienen opción de financiación subvencionada a 1 año sin intereses: Impulso 23€/mes, Avanza 42€/mes y Elite 66€/mes. También puedes pagar al contado o en dos partes: 50% al iniciar y 50% al entregar la web terminada."
+      keywords: ["pago", "pagar", "pagaros", "formas de pago", "forma de pago", "como pago", "como se paga", "metodo de pago", "metodos de pago", "transferencia", "tarjeta", "al contado", "por adelantado"],
+      question: "¿Cómo se paga?",
+      answer: "Te lo explicamos todo al preparar tu presupuesto. Escríbenos por WhatsApp.",
+      showWhatsapp: true
     },
     {
       id: "bizum",
       keywords: ["bizum"],
-      question: "¿Aceptan Bizum?",
-      answer: "Por ahora no trabajamos con Bizum. Puedes pagar al contado, en dos partes (50% al iniciar y 50% al entregar) o con la opción de financiación a 1 año sin intereses."
+      question: "¿La tienda acepta Bizum?",
+      answer: "Sí, la tienda online del pack Elite puede aceptar pagos con Bizum, además de tarjeta."
     },
     {
       id: "iva",
-      // PENDIENTE: el usuario confirmará si los precios llevan IVA. NO publicar sin sustituir esta respuesta.
-      keywords: ["iva", "impuestos", "con iva", "sin iva", "mas iva", "iva incluido"],
+      keywords: ["iva", "impuestos", "con iva", "sin iva", "mas iva", "iva incluido", "llevan iva", "incluyen iva", "incluye iva", "precios con iva", "precios llevan iva"],
       question: "¿Los precios llevan IVA?",
-      answer: "[PENDIENTE: respuesta sobre el IVA]"
+      answer: "Nuestros precios no incluyen IVA (21 %). Te lo detallamos en el presupuesto."
     },
     {
       id: "plazos",
@@ -169,6 +177,26 @@ window.AGENTE_CONFIG = {
       keywords: ["dedicais", "quienes sois", "quien hay", "quien es", "ustedes", "vosotros", "sobre vosotros"],
       question: "¿Quieres saber sobre nosotros?",
       answer: "¡Por supuesto! 3G es una empresa familiar que, como su propio nombre indica, está compuesta por tres generaciones: abuelo, madre e hijo. Cada uno especialista en un área diferente que, juntas, crean una experiencia completa para los emprendedores, empresas y negocios."
+    },
+    {
+      id: "ubicacion",
+      keywords: ["donde estais", "donde estan", "donde os encontrais", "ubicacion", "direccion", "de donde sois", "de donde son", "elche", "alicante", "zona", "ciudad", "estais cerca"],
+      question: "¿Dónde están?",
+      answer: "Estamos en Elche (Alicante). Podemos vernos en persona o, si no es cerca, por Zoom."
+    },
+    {
+      id: "dominio",
+      keywords: ["dominio", "el dominio", "a nombre de quien", "a mi nombre", "es mio", "propiedad", "propietario"],
+      question: "¿El dominio es mío?",
+      answer: "El dominio se registra a nombre del cliente; es suyo."
+    },
+    {
+      id: "colombia",
+      keywords: ["colombia", "colombiano", "colombiana", "bogota", "medellin", "latinoamerica", "fuera de espana", "otro pais"],
+      question: "¿Trabajan fuera de España?",
+      answer: "Ahora mismo trabajamos con clientes de España. Escríbenos por WhatsApp y lo vemos.",
+      showWhatsapp: true,
+      peso: 5 // si mencionan Colombia, esta respuesta manda aunque pregunten por otra cosa
     },
     {
       id: "despedida",
