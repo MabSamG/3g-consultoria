@@ -35,9 +35,7 @@ window.AGENTE_CONFIG = {
   id: "precios_planes",
   keywords: ["precio de los planes", "precios", "cuanto cuestan los planes", "tarifas", "financiacion", "cuanto cuesta"],
   question: "Ver precios de los planes",
-  askRegion: true,
-  answerEspana: "Nuestros planes en España: Plan Impulso 299€ (antes 598€), Plan Avanza 499€ (antes 998€) y Plan Elite 799€ (antes 1.598€). Los tres con financiación subvencionada a 1 año sin intereses.",
-  answerColombia: "Nuestros planes en Colombia: Plan Impulso 299€ / $1.072.000 COP (antes 598€), Plan Avanza 499€ / $1.789.000 COP (antes 998€) y Plan Elite 799€ / $2.864.000 COP (antes 1.598€). Los tres con financiación subvencionada a 1 año sin intereses. (*Cambio EUR→COP referencial según la tasa actual; puede variar.)"
+  answer: "Nuestros planes: Plan Impulso 299€ (antes 598€), Plan Avanza 499€ (antes 998€) y Plan Elite desde 799€ (antes 1.598€). Los tres con opción de financiación subvencionada a 1 año sin intereses: 23€/mes, 42€/mes y 66€/mes."
     },
     {
       id: "info_general",
@@ -57,7 +55,7 @@ window.AGENTE_CONFIG = {
       id: "servicios",
       keywords: ["servicio", "servicios", "que hacen", "que ofrecen", "planes", "paginas web", "tienda online", "que venden"],
       question: "¿Qué servicios ofrecen?",
-      answer: "Creamos páginas web y tiendas online para emprendedores y negocios. Actualmente tenemos 3 planes: Impulso (página web profesional), Avanza (tienda local con reservas) y Elite (tienda virtual completa con pagos y envíos)."
+      answer: "Trabajamos en tres áreas. Tecnología: páginas web y tiendas online, con 3 planes: Impulso (página web profesional), Avanza (tienda local con reservas) y Elite (tienda virtual completa con pagos y envíos). Diseño: identidad de marca y branding. Consultoría: auditoría de negocio y sesiones estratégicas."
     },
     {
       id: "contratar",
@@ -69,25 +67,25 @@ window.AGENTE_CONFIG = {
       id: "plan_impulso",
       keywords: ["impulso", "plan impulso", "plan basico", "el mas barato", "pack impulso", "pack básico", "básico", "basico"],
       question: "¿Qué incluye el Plan Impulso?",
-      answer: "El Plan Impulso incluye tu página web profesional, optimizada para móvil, con botón de WhatsApp, Agente IA y Google Business. Ahora en promoción por 299€ (antes 598€), con opción de financiación a 1 año."
+      answer: "El Plan Impulso incluye tu página web profesional, optimizada para móvil, con botón de WhatsApp, Agente IA y Google Business. Ahora en promoción por 299€ (antes 598€), con opción de financiación a 1 año por 23€/mes."
     },
     {
       id: "plan_avanza",
       keywords: ["avanza", "plan avanza", "reservas", "tienda local", "pack avanza", "plan medio", "medio", "intermedio", "negocio local"],
       question: "¿Qué incluye el Plan Avanza?",
-      answer: "El Plan Avanza añade al Plan Impulso una tienda local con opción a reservas, gestión de stock y backoffice sencilla. Ahora en promoción por 499€ (antes 998€), con opción a financiación a 1 año."
+      answer: "El Plan Avanza añade al Plan Impulso una tienda local con opción a reservas, gestión de stock y backoffice sencilla. Ahora en promoción por 499€ (antes 998€), con opción de financiación a 1 año por 42€/mes."
     },
     {
       id: "plan_elite",
-      keywords: ["elite", "plan elite", "tienda virtual", "pagos", "pse", "nequi", "carrito de compra", "pack elite", "tienda completa", "superior", "completo"],
+      keywords: ["elite", "plan elite", "tienda virtual", "pagos", "bizum", "carrito de compra", "pack elite", "tienda completa", "superior", "completo"],
       question: "¿Qué incluye el Plan Elite?",
-      answer: "El Plan Elite es tu tienda virtual completa: web profesional con carrito de compra, pasarela de pagos, CRM y cálculo de envíos. Ahora en promoción desde 799€ (antes 1.598€), con opción a financiación a 1 año."
+      answer: "El Plan Elite es tu tienda virtual completa: web profesional con carrito de compra, pasarela de pagos (Bizum, transferencia y tarjeta), CRM y cálculo de envíos. Ahora en promoción desde 799€ (antes 1.598€), con opción de financiación a 1 año por 66€/mes."
     },
     {
       id: "pago",
       keywords: ["pago", "pagar", "oferta", "promocion", "promoción", "precio", "cuesta", "financiacion", "cuotas", "mensualidad", "subvencion", "subvención"],
       question: "¿Cómo puedo pagar?",
-      answer: "Ahora, y por tiempo limitado, ofrecemos en todos los planes financiación subvencionada a 1 año sin intereses. Además de nuestras dos formas de pago habituales: al contado o pago fraccionado: 50% al iniciar y 50% al entregar la web terminada."
+      answer: "Ahora, y por tiempo limitado, todos los planes tienen opción de financiación subvencionada a 1 año sin intereses: Impulso 23€/mes, Avanza 42€/mes y Elite 66€/mes. También puedes pagar al contado o en dos partes: 50% al iniciar y 50% al entregar la web terminada."
     },
     {
       id: "plazos",
@@ -105,7 +103,25 @@ window.AGENTE_CONFIG = {
       id: "agente",
       keywords: ["agente", "hablar con", "me atiendan", "atienda", "comunicarme", "saber más", "saber mas", "contacto", "contactar"],
       question: "¿Necesitas hablar con nosotros?",
-      answer: "Si necesitas atención más concreta o personalizada, puedes escribirnos al correo o al WhatsApp. Te atenderemos lo antes posible. Si lo prefieres, también puedes dejarnos aquí tu correo o teléfono y nos pondremos en contacto contigo."
+      answer: "Puedes escribirnos por WhatsApp al 611 87 19 37 o a info@3gtresgeneraciones.com. Si lo prefieres, también podemos hacer una visita presencial o una reunión privada por Zoom. Y si nos dejas aquí tu correo o teléfono, te contactamos nosotros."
+    },
+    {
+      id: "branding",
+      keywords: ["logo", "logotipo", "branding", "identidad de marca", "identidad corporativa", "marca", "manual de marca", "diseno grafico", "tarjetas de visita", "paleta de colores", "tipografia"],
+      question: "¿Diseñan logotipos y marcas?",
+      answer: "Sí. En Diseño creamos tu identidad de marca: logotipo, paleta de colores, tipografías y manual de marca, y lo aplicamos a tus tarjetas, redes sociales y todo lo que necesites. Cuéntanos tu caso por WhatsApp y te preparamos una propuesta."
+    },
+    {
+      id: "consultoria",
+      keywords: ["consultoria", "consultor", "asesoria", "asesoramiento", "auditoria", "sesion estrategica", "estrategia", "mejorar mi negocio", "captar clientes", "captacion de clientes", "organizacion", "plan de mejora"],
+      question: "¿Qué hacen en consultoría?",
+      answer: "Tenemos dos servicios de consultoría. Auditoría de negocio: revisamos tu negocio a fondo y te damos un plan de mejora concreto. Sesión estratégica: una reunión para trabajar un reto concreto, como precios, captación de clientes u organización. Escríbenos por WhatsApp y vemos cuál te encaja."
+    },
+    {
+      id: "reunion",
+      keywords: ["visita", "presencial", "en persona", "zoom", "videollamada", "reunion", "quedar", "cita", "boceto", "ejemplo de mi web", "muestra"],
+      question: "¿Podemos reunirnos?",
+      answer: "¡Claro! Puedes elegir una visita presencial, una reunión privada por Zoom o pedirnos un boceto gratis de tu web. Escríbenos por WhatsApp al 611 87 19 37 y lo concertamos."
     },
     {
       id: "dedicais",
