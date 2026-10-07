@@ -847,6 +847,16 @@ section {
   }
 }
 
+.packs__banner-note {
+  margin-top: 10px;
+  color: #FFFFFF;
+  opacity: 0.75;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 .packs__banner-financing {
   color: #FFFFFF;
   opacity: 0.95;
@@ -1516,15 +1526,154 @@ section {
   z-index: 1;
 }
 
-/* Opciones de contacto (visita, Zoom, boceto) */
-.contact-options__email {
+/* Contacto: tres tarjetas enteras clicables, una por color de la marca */
+.contacto__intro {
   position: relative;
   z-index: 1;
-  margin-top: 24px;
+  margin: -16px auto 36px;
   color: var(--text-secondary);
 }
 
-.contact-options__email a,
+.contacto {
+  --acento: var(--coral);
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  text-align: left;
+}
+
+.contacto__opcion--coral { --acento: #E8714A; --relleno: var(--coral); }
+.contacto__opcion--petroleo { --acento: #2FA8A3; --relleno: var(--petroleo); }
+.contacto__opcion--dorado { --acento: #D99A3A; --relleno: var(--dorado); }
+
+.contacto__opcion {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-radius: var(--radius-md);
+  background: var(--step-bg);
+  border: 1px solid rgba(245, 245, 243, 0.08);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contacto__opcion:hover,
+.contacto__opcion:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--acento);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+}
+
+.contacto__opcion:focus-visible {
+  outline: 3px solid var(--acento);
+  outline-offset: 3px;
+}
+
+.contacto__icono {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--relleno);
+  color: #fff;
+}
+
+.contacto__icono svg {
+  width: 28px;
+  height: 28px;
+}
+
+.contacto__opcion--coral .contacto__icono svg {
+  fill: currentColor;
+}
+
+.contacto__texto {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contacto__titulo {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.contacto__detalle {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  overflow-wrap: anywhere;
+}
+
+/* Móviles muy estrechos: tarjetas más compactas y sin la flecha (toda la tarjeta es el enlace) */
+@media (max-width: 360px) {
+  .contacto__opcion {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .contacto__icono {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .contacto__icono svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .contacto__flecha {
+    display: none;
+  }
+}
+
+.contacto__flecha {
+  flex-shrink: 0;
+  color: var(--acento);
+  font-size: 1.4rem;
+  font-weight: 700;
+  transition: transform 0.2s ease;
+}
+
+.contacto__opcion:hover .contacto__flecha,
+.contacto__opcion:focus-visible .contacto__flecha {
+  transform: translateX(4px);
+}
+
+@media (min-width: 900px) {
+  .contacto {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .contacto__opcion {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 28px 24px;
+  }
+
+  .contacto__titulo {
+    font-size: 1.15rem;
+  }
+
+  .contacto__flecha {
+    margin-top: auto;
+  }
+}
+
+/* Email del pie */
 .footer__email a {
   color: var(--text-primary);
   font-weight: 600;
@@ -1536,57 +1685,12 @@ section {
   font-size: 0.9rem;
 }
 
-.contact-options__intro {
-  position: relative;
-  z-index: 1;
-  margin: 48px 0 20px;
-  color: var(--text-secondary);
-}
-
-.contact-options {
-  position: relative;
-  z-index: 1;
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  text-align: left;
-}
-
-@media (min-width: 1024px) {
-  .contact-options {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 /* Tablet: una columna centrada en vez de tres columnas estrechas */
 @media (min-width: 768px) and (max-width: 1023px) {
   .services__grid,
-  .packs__grid,
-  .contact-options {
+  .packs__grid {
     max-width: 640px;
   }
-}
-
-.contact-option {
-  padding: 28px 24px;
-}
-
-.contact-option .card__title {
-  font-size: 1.15rem;
-  margin-bottom: 8px;
-}
-
-.cta-final .contact-option__btn {
-  margin-top: auto;
-  align-self: flex-start;
-  padding: 12px 22px;
-  font-size: 0.92rem;
-}
-
-.contact-option .card__text {
-  margin-bottom: 20px;
 }
 
 /* ============================================================

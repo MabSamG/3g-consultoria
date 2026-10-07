@@ -136,3 +136,76 @@
     justify-content: center;
   }
 }
+
+/* ---------- Boceto gratis (en lugar de «Volver a todos los packs») ---------- */
+.pack-detail--impulso { --pack: var(--coral); --pack-texto: #1d1d1b; }
+.pack-detail--avanza { --pack: #2A8C88; --pack-texto: #fff; }
+.pack-detail--elite { --pack: var(--dorado); --pack-texto: #1d1d1b; }
+
+.boceto-cta {
+  margin-top: 36px;
+  padding: 28px 22px;
+  border: 2px dashed var(--pack);
+  border-radius: var(--radius-lg);
+  background: rgba(245, 245, 243, 0.04);
+  text-align: center;
+}
+
+.boceto-cta__title {
+  font-size: clamp(1.15rem, 3vw, 1.4rem);
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.boceto-cta__text {
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  max-width: 30em;
+  margin: 0 auto 20px;
+  text-transform: none;
+  font-weight: 400;
+}
+
+.boceto-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: 12px;
+  background: var(--pack);
+  color: var(--pack-texto);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.boceto-cta__btn:hover,
+.boceto-cta__btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+}
+
+.boceto-cta__btn:focus-visible {
+  outline: 3px solid var(--text-primary);
+  outline-offset: 3px;
+}
+
+.boceto-cta__icono {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 420px) {
+  .boceto-cta {
+    padding: 24px 14px;
+  }
+
+  .boceto-cta__btn {
+    padding: 13px 16px;
+    font-size: 0.95rem;
+    gap: 8px;
+  }
+}
