@@ -9,12 +9,7 @@
   --coral: #D85A30;
   --coral-claro: #F0805A;
   --petroleo: #215C60;
-  --dorado: #BA7517;
-  /* Petróleo claro para el nombre del negocio (contraste sobre --bg-dark entre paréntesis) */
-  --nombre-claro: #45C4BF;  /* 6,6:1 */
-  --nombre-medio: #3AB5B0;  /* 5,6:1 */
-  --nombre-oscuro: #2FA8A3; /* 4,8:1 */
-  --nombre: var(--nombre-medio);
+  --nombre: #2FA8A3; /* petróleo claro para el nombre del negocio: contraste 4,8:1 sobre --bg-dark */
   --text-primary: #F5F5F3;
   --text-secondary: #A8A7A3;
   --step-bg: #3A3A37;
@@ -463,11 +458,6 @@ a {
 .dx-gracias__nombre {
   font-size: 1.2em;
 }
-
-/* TEMPORAL — comparar color del nombre (?color=claro / medio / oscuro) */
-.dx-color-claro { --nombre: var(--nombre-claro); }
-.dx-color-medio { --nombre: var(--nombre-medio); }
-.dx-color-oscuro { --nombre: var(--nombre-oscuro); }
 
 /* ---------- Pie ---------- */
 .dx-pie {

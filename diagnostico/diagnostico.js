@@ -194,10 +194,10 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
     $('dxResTasa').textContent = String(Math.round(1 / resultado.tasa));
     $('dxResPalabra').textContent = PALABRA_SECTOR[respuestas.sector];
     $('dxResSerian').textContent = resultado.clientes === 1 ? 'sería' : 'serían';
-    // Espacios duros: «más al mes,» nunca se separa (evita que «mes,» quede sola en el móvil)
+    // Espacio duro antes de «más,»: así nunca queda sola en una línea en el móvil
     $('dxResClientes').textContent = resultado.clientes === 1
-      ? '1 cliente más al mes,'
-      : `unos ${formatear(resultado.clientes)} clientes más al mes,`;
+      ? '1 cliente más,'
+      : `unos ${formatear(resultado.clientes)} clientes más,`;
     $('dxResDinero').textContent = formatear(resultado.dinero);
     $('dxResDineroLinea').hidden = !resultado.mostrarDinero;
 
@@ -355,10 +355,6 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
   }
 
   /* ---------- Arranque ---------- */
-  // TEMPORAL: comparar el color del nombre del negocio (?color=claro, ?color=medio u ?color=oscuro)
-  const colorNombre = new URLSearchParams(location.search).get('color');
-  document.body.classList.add(`dx-color-${['claro', 'oscuro'].includes(colorNombre) ? colorNombre : 'medio'}`);
-
   history.replaceState({ pantalla: 'inicio' }, '');
   mostrar('inicio');
 })();
