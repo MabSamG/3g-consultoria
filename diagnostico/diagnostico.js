@@ -9,7 +9,8 @@ const PCT_FUERA_HORARIO = { pocos: 0.20, mitad: 0.50, muchos: 0.70 };
 const GASTO_MEDIO = { '-20': 15, '20-50': 35, '50+': 60 };
 const MINUTOS_POR_MENSAJE = 3;
 const DIAS_MES = 30;
-const TASA_RECUPERACION = 0.10; // 1 de cada 10
+const TASA_RECUPERACION = 0.10; // 1 de cada 10 (no pueden reservar/comprar sin hablar contigo)
+const TASA_MEJORA_WEB = 0.05;   // 1 de cada 20 (ya pueden: mejora por una web más clara y rápida)
 
 /* ---------- Textos según el sector ---------- */
 const PALABRA_SECTOR = { servicios: 'cita', comercio: 'venta', otros: 'cliente' };
@@ -53,11 +54,12 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
 
     const horas = redondearAbajo(mensajes * MINUTOS_POR_MENSAJE * DIAS_MES / 60, 1);
     const consultas = redondearAbajo(mensajes * pctFuera * DIAS_MES, 5);
-    const clientes = redondearAbajo(consultas * TASA_RECUPERACION, 1);
+    const tasa = r.reserva === 'si' ? TASA_MEJORA_WEB : TASA_RECUPERACION;
+    const clientes = redondearAbajo(consultas * tasa, 1);
     const dinero = redondearAbajo(clientes * gasto, 10);
-    const mostrarDinero = r.reserva !== 'si' && clientes > 0;
+    const mostrarDinero = clientes > 0;
 
-    return { mensajes, pctFuera, gasto, horas, consultas, clientes, dinero, mostrarDinero };
+    return { mensajes, pctFuera, gasto, horas, consultas, tasa, clientes, dinero, mostrarDinero };
   }
 
   /* ---------- Navegación ---------- */
@@ -186,7 +188,10 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
     $('dxResNegocio').textContent = respuestas.negocio;
     $('dxResHoras').textContent = formatear(resultado.horas);
     $('dxResConsultas').textContent = formatear(resultado.consultas);
-    $('dxResTasa').textContent = String(Math.round(1 / TASA_RECUPERACION));
+    const conWeb = respuestas.reserva === 'si';
+    $('dxResMejora').hidden = !conWeb;
+    $('dxResSi').textContent = conWeb ? 'si' : 'Si';
+    $('dxResTasa').textContent = String(Math.round(1 / resultado.tasa));
     $('dxResPalabra').textContent = PALABRA_SECTOR[respuestas.sector];
     $('dxResClientes').textContent = resultado.clientes === 1
       ? '1 cliente más al mes,'
@@ -348,8 +353,8 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
   }
 
   /* ---------- Arranque ---------- */
-  // TEMPORAL: comparar estilos del nombre en el bloque del boceto (?nombre=a o ?nombre=b)
-  document.body.classList.add(new URLSearchParams(location.search).get('nombre') === 'b' ? 'dx-nombre-b' : 'dx-nombre-a');
+  // TEMPORAL: comparar el color del nombre del negocio (?color=dorado o ?color=petroleo)
+  document.body.classList.add(new URLSearchParams(location.search).get('color') === 'petroleo' ? 'dx-color-petroleo' : 'dx-color-dorado');
 
   history.replaceState({ pantalla: 'inicio' }, '');
   mostrar('inicio');

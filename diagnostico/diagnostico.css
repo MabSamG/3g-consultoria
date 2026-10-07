@@ -10,6 +10,9 @@
   --coral-claro: #F0805A;
   --petroleo: #215C60;
   --dorado: #BA7517;
+  --nombre-dorado: #FFC93C;   /* dorado brillante tirando a amarillo */
+  --nombre-petroleo: #5ED8D2; /* petróleo de la marca, claro y luminoso */
+  --nombre: var(--nombre-dorado);
   --text-primary: #F5F5F3;
   --text-secondary: #A8A7A3;
   --step-bg: #3A3A37;
@@ -375,8 +378,7 @@ a {
 
 /* ---------- Resultado ---------- */
 .dx-resultado__negocio {
-  font-size: clamp(1.5rem, 7vw, 2rem);
-  font-weight: 800;
+  font-size: clamp(1.75rem, 8vw, 2.3rem);
   line-height: 1.15;
   overflow-wrap: anywhere;
 }
@@ -407,6 +409,23 @@ a {
 .dx-linea--dinero {
   background: var(--petroleo);
   color: rgba(245, 245, 243, 0.85);
+}
+
+/* Primera parte en su propia línea; en el móvil se ajusta para que quepa entera */
+.dx-linea__intro {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.dx-linea__mejora {
+  display: block;
+}
+
+@media (max-width: 400px) {
+  .dx-linea--dinero {
+    padding: 16px 16px;
+    font-size: 0.95rem;
+  }
 }
 
 .dx-cifra--clientes {
@@ -442,26 +461,21 @@ a {
   overflow-wrap: anywhere;
 }
 
-/* Nombre del negocio: dorado de la marca (mejor contraste que el coral sobre el fondo oscuro) */
-.dx-caramelo__nombre {
-  color: var(--dorado);
-}
-
-/* TEMPORAL — opción A: serif cursiva */
-.dx-nombre-a .dx-caramelo__nombre {
+/* ---------- Nombre del negocio (título del resultado y caramelo) ---------- */
+.dx-nombre {
   font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
   font-weight: 700;
+  color: var(--nombre);
+}
+
+.dx-caramelo__nombre {
   font-size: 1.3em;
 }
 
-/* TEMPORAL — opción B: manuscrita */
-.dx-nombre-b .dx-caramelo__nombre {
-  font-family: 'Caveat', cursive;
-  font-weight: 700;
-  font-size: 1.6em;
-  line-height: 1;
-}
+/* TEMPORAL — comparar color del nombre (?color=dorado / ?color=petroleo) */
+.dx-color-dorado { --nombre: var(--nombre-dorado); }
+.dx-color-petroleo { --nombre: var(--nombre-petroleo); }
 
 /* ---------- Pie ---------- */
 .dx-pie {

@@ -18,7 +18,7 @@
   <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/diagnostico/diagnostico.css">
 </head>
@@ -114,17 +114,17 @@
 
     <!-- ========== Resultado ========== -->
     <section class="dx-pantalla" data-pantalla="resultado" hidden>
-      <h2 class="dx-resultado__negocio" id="dxResNegocio" tabindex="-1"></h2>
+      <h2 class="dx-resultado__negocio dx-nombre" id="dxResNegocio" tabindex="-1"></h2>
 
       <div class="dx-resultado">
         <p class="dx-linea">Pasas unas <strong class="dx-cifra"><span id="dxResHoras"></span> horas al mes</strong> contestando mensajes que se repiten.</p>
         <p class="dx-linea">Te llegan unas <strong class="dx-cifra"><span id="dxResConsultas"></span> consultas al mes fuera de tu horario de atención.</strong></p>
-        <p class="dx-linea dx-linea--dinero" id="dxResDineroLinea">Si 1 de cada <span id="dxResTasa"></span> de esas consultas acabara en <span id="dxResPalabra"></span>, serían <strong class="dx-cifra dx-cifra--clientes" id="dxResClientes"></strong> <strong class="dx-cifra dx-cifra--dinero">unos <span id="dxResDinero"></span> € más.</strong></p>
+        <p class="dx-linea dx-linea--dinero" id="dxResDineroLinea"><span class="dx-linea__intro"><span class="dx-linea__mejora" id="dxResMejora">Con una web más clara y rápida,</span> <span id="dxResSi">Si</span> 1 de cada <span id="dxResTasa"></span> acabara en <span id="dxResPalabra"></span>:</span> <strong class="dx-cifra dx-cifra--clientes" id="dxResClientes"></strong> <strong class="dx-cifra dx-cifra--dinero">unos <span id="dxResDinero"></span> € más.</strong></p>
       </div>
       <p class="dx-nota">Cálculo aproximado hecho con tus respuestas.</p>
 
       <div class="dx-caramelo">
-        <h3 class="dx-caramelo__titulo">¿Quieres ver cómo quedaría la <span id="dxCarameloObjeto"></span> de <span class="dx-caramelo__nombre" id="dxCarameloNombre"></span>?</h3>
+        <h3 class="dx-caramelo__titulo">¿Quieres ver cómo quedaría la <span id="dxCarameloObjeto"></span> de <span class="dx-caramelo__nombre dx-nombre" id="dxCarameloNombre"></span>?</h3>
         <p>Te preparamos un boceto gratis con tu logo, tus fotos y la información de tus redes.</p>
         <button type="button" class="dx-btn" data-ir="boceto">Quiero mi boceto</button>
       </div>
