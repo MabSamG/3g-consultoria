@@ -18,7 +18,6 @@ const BOCETO_SECTOR = { servicios: 'web', comercio: 'tienda online', otros: 'web
 
 /* ---------- Otros ajustes ---------- */
 const WHATSAPP_3G = '34611871937';
-const API_URL = '/.netlify/functions/diagnostico';
 const TIEMPO_MAX_GUARDADO = 8000; // ms
 // Cambiar si se modifica el texto de la casilla de consentimiento
 const CONSENTIMIENTO_VERSION = '2026-10-06';
@@ -31,9 +30,7 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
 
   const respuestas = { negocio: '', sector: null, web: null, mensajes: null, fuera: null, reserva: null, gasto: null };
   let resultado = null;
-  let filaId = null;
   let ultimoGuardado = '';
-  let guardadoEnCurso = Promise.resolve();
   let enviando = false;
 
   const $ = (id) => document.getElementById(id);
@@ -212,50 +209,54 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
     }
   }
 
+  // Texto del botón elegido, para que en el panel de Netlify se lea la respuesta tal cual
+  function textoRespuesta(campo) {
+    const btn = document.querySelector(`[data-campo="${campo}"] [data-valor="${respuestas[campo]}"]`);
+    return btn ? btn.textContent.trim() : '';
+  }
+
+  // Campos del formulario oculto «diagnostico» (index.html); «boceto» lleva estos y los de contacto
   function datosDiagnostico() {
     return {
       negocio: respuestas.negocio,
-      sector: respuestas.sector,
-      tiene_web: respuestas.web === 'si',
-      mensajes_dia: resultado.mensajes,
-      pct_fuera_horario: resultado.pctFuera,
-      reserva_online: respuestas.reserva === 'si',
-      gasto_medio: resultado.gasto,
-      horas_mes: resultado.horas,
-      consultas_fuera: resultado.consultas,
-      clientes_recuperables: resultado.clientes,
-      dinero_mes: resultado.mostrarDinero ? resultado.dinero : null,
+      sector: textoRespuesta('sector'),
+      tiene_web: textoRespuesta('web'),
+      mensajes_dia: textoRespuesta('mensajes'),
+      fuera_horario: textoRespuesta('fuera'),
+      reserva_online: textoRespuesta('reserva'),
+      gasto_medio: textoRespuesta('gasto'),
+      horas_mes: String(resultado.horas),
+      consultas_fuera: String(resultado.consultas),
+      clientes_mes: String(resultado.clientes),
+      euros_mes: resultado.mostrarDinero ? String(resultado.dinero) : '(no se mostró: 0 clientes)',
     };
   }
 
-  /* ---------- Guardado (nunca bloquea el resultado) ---------- */
+  /* ---------- Guardado en Netlify Forms (nunca bloquea al usuario) ---------- */
 
-  async function enviar(datos) {
+  async function enviarFormulario(nombre, datos) {
     const ctrl = new AbortController();
     const temporizador = setTimeout(() => ctrl.abort(), TIEMPO_MAX_GUARDADO);
     try {
-      const res = await fetch(API_URL, {
+      const res = await fetch('/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(datos),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(Object.assign({ 'form-name': nombre }, datos)).toString(),
         signal: ctrl.signal,
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return await res.json();
     } finally {
       clearTimeout(temporizador);
     }
   }
 
   function guardarResultado() {
-    const datos = datosDiagnostico();
+    const datos = Object.assign(datosDiagnostico(), { 'bot-field': '' });
     const clave = JSON.stringify(datos);
-    if (clave === ultimoGuardado) return;
+    if (clave === ultimoGuardado) return; // no repetir si vuelve a la misma pantalla sin cambiar nada
     ultimoGuardado = clave;
 
-    guardadoEnCurso = guardadoEnCurso
-      .then(() => enviar(Object.assign({ accion: 'resultado', id: filaId }, datos)))
-      .then((r) => { if (r && r.id) filaId = r.id; })
+    enviarFormulario('diagnostico', datos)
       .catch(() => { ultimoGuardado = ''; }); // se reintentará al volver a ver el resultado
   }
 
@@ -319,16 +320,17 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
     boton.textContent = 'Enviando…';
 
     try {
-      await guardadoEnCurso; // así usamos la fila ya creada al ver el resultado
-      await enviar(Object.assign({ accion: 'boceto', id: filaId }, datosDiagnostico(), {
-        contacto_nombre: f.nombre.value.trim(),
+      // Se envía antes de mostrar «Recibido» (y, por tanto, antes de que pueda abrir WhatsApp)
+      await enviarFormulario('boceto', Object.assign(datosDiagnostico(), {
+        nombre: f.nombre.value.trim(),
         whatsapp: limpiarTelefono(f.whatsapp.value),
         redes: f.redes.value.trim(),
         web: respuestas.web === 'si' ? f.web.value.trim() : '',
         email: f.email.value.trim(),
-        consentimiento: f.consentimiento.checked,
+        consentimiento: f.consentimiento.checked ? 'Sí' : 'No',
+        consentimiento_fecha: new Date().toISOString(),
         consentimiento_version: CONSENTIMIENTO_VERSION,
-        sitio: f.sitio.value,
+        'bot-field': f['bot-field'].value,
       }));
     } catch (err) {
       // Si falla el guardado seguimos igual: el mensaje de WhatsApp de la confirmación nos trae el contacto

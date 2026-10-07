@@ -160,10 +160,10 @@
           <p class="dx-error" hidden>Revisa el email.</p>
         </div>
 
-        <!-- Campo trampa para bots: las personas no lo ven -->
+        <!-- Campo trampa para bots (honeypot de Netlify): las personas no lo ven -->
         <div class="dx-trampa" aria-hidden="true">
-          <label for="dxSitio">No rellenar</label>
-          <input type="text" id="dxSitio" name="sitio" tabindex="-1" autocomplete="off">
+          <label for="dxBotField">No rellenar</label>
+          <input type="text" id="dxBotField" name="bot-field" tabindex="-1" autocomplete="off">
         </div>
 
         <div class="dx-campo dx-campo--check">
@@ -192,6 +192,22 @@
   <footer class="dx-pie">
     <a href="/privacidad/" target="_blank" rel="noopener">Política de privacidad</a>
   </footer>
+
+  <!-- Formularios ocultos para que Netlify Forms los detecte al publicar. Los envía diagnostico.js. -->
+  <form name="diagnostico" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input name="negocio"><input name="sector"><input name="tiene_web">
+    <input name="mensajes_dia"><input name="fuera_horario"><input name="reserva_online"><input name="gasto_medio">
+    <input name="horas_mes"><input name="consultas_fuera"><input name="clientes_mes"><input name="euros_mes">
+    <input name="bot-field">
+  </form>
+  <form name="boceto" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input name="negocio"><input name="sector"><input name="tiene_web">
+    <input name="mensajes_dia"><input name="fuera_horario"><input name="reserva_online"><input name="gasto_medio">
+    <input name="horas_mes"><input name="consultas_fuera"><input name="clientes_mes"><input name="euros_mes">
+    <input name="nombre"><input name="whatsapp"><input name="redes"><input name="web"><input name="email">
+    <input name="consentimiento"><input name="consentimiento_fecha"><input name="consentimiento_version">
+    <input name="bot-field">
+  </form>
 
   <script src="/diagnostico/diagnostico.js"></script>
 </body>
