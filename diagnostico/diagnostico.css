@@ -419,6 +419,15 @@ a {
   color: #fff;
 }
 
+/* Frase cuando el dinero no llega al mínimo: mismo bloque destacado */
+.dx-linea__mensaje {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #fff;
+}
+
 .dx-pantalla[data-pantalla="resultado"] > .dx-nota {
   margin-top: -8px;
 }

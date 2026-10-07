@@ -150,9 +150,15 @@ window.AGENTE_CONFIG = {
     },
     {
       id: "agente",
-      keywords: ["agente", "hablar con", "una persona", "me atiendan", "atienda", "comunicarme", "saber mas", "contacto", "contactar", "telefono", "llamar", "email", "correo"],
+      keywords: ["hablar con", "una persona", "hablar con un agente", "un humano", "me atiendan", "atienda", "comunicarme", "saber mas", "contacto", "contactar", "telefono", "llamar", "email", "correo"],
       question: "¿Necesitas hablar con nosotros?",
       answer: "Puedes escribirnos por WhatsApp al 611 87 19 37 o a info@3gtresgeneraciones.com. Si lo prefieres, también podemos hacer una visita presencial o una reunión privada por Zoom. Y si nos dejas aquí tu correo o teléfono, te contactamos nosotros."
+    },
+    {
+      id: "asistente_web",
+      keywords: ["agente", "asistente", "asistente virtual", "chat", "chatbot", "bot", "robot", "como este", "como esta", "esto que estoy usando", "lo que estoy usando", "este chat", "un chat asi", "un agente asi", "un asistente asi", "responda solo", "conteste solo", "atencion automatica", "respuestas automaticas"],
+      question: "¿Mi web tendrá un asistente como este?",
+      answer: "¡Sí! Todos nuestros packs incluyen un asistente virtual como este, adaptado a tu negocio: tus servicios, precios, horarios y preguntas frecuentes. Atiende a tus clientes 24/7 y te pasa sus datos de contacto. Ahora mismo va incluido gratis con la promoción."
     },
     {
       id: "branding",

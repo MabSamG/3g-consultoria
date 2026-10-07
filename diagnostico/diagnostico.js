@@ -9,8 +9,8 @@ const PCT_FUERA_HORARIO = { pocos: 0.20, mitad: 0.50, muchos: 0.70 };
 const GASTO_MEDIO = { '-20': 15, '20-50': 35, '50+': 60 };
 const MINUTOS_POR_MENSAJE = 3;
 const DIAS_MES = 30;
-const TASA_RECUPERACION = 0.10; // 1 de cada 10 (no pueden reservar/comprar sin hablar contigo)
-const TASA_MEJORA_WEB = 0.05;   // 1 de cada 20 (ya pueden: mejora por una web más clara y rápida)
+const TASA_RECUPERACION = 0.10; // 1 de cada 10, contesten Sí o No a reservar sin hablar contigo
+const MINIMO_EUROS = 50;        // por debajo, en vez de clientes y dinero se muestra una frase
 
 /* ---------- Textos según el sector ---------- */
 const PALABRA_SECTOR = { servicios: 'cita', comercio: 'venta', otros: 'cliente' };
@@ -51,12 +51,11 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
 
     const horas = redondearAbajo(mensajes * MINUTOS_POR_MENSAJE * DIAS_MES / 60, 1);
     const consultas = redondearAbajo(mensajes * pctFuera * DIAS_MES, 5);
-    const tasa = r.reserva === 'si' ? TASA_MEJORA_WEB : TASA_RECUPERACION;
-    const clientes = redondearAbajo(consultas * tasa, 1);
+    const clientes = redondearAbajo(consultas * TASA_RECUPERACION, 1);
     const dinero = redondearAbajo(clientes * gasto, 10);
-    const mostrarDinero = clientes > 0;
+    const mostrarDinero = dinero >= MINIMO_EUROS;
 
-    return { mensajes, pctFuera, gasto, horas, consultas, tasa, clientes, dinero, mostrarDinero };
+    return { mensajes, pctFuera, gasto, horas, consultas, clientes, dinero, mostrarDinero };
   }
 
   /* ---------- Navegación ---------- */
@@ -188,7 +187,7 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
     const conWeb = respuestas.reserva === 'si';
     $('dxResMejora').hidden = !conWeb;
     $('dxResSi').textContent = conWeb ? 'si' : 'Si';
-    $('dxResTasa').textContent = String(Math.round(1 / resultado.tasa));
+    $('dxResTasa').textContent = String(Math.round(1 / TASA_RECUPERACION));
     $('dxResPalabra').textContent = PALABRA_SECTOR[respuestas.sector];
     $('dxResSerian').textContent = resultado.clientes === 1 ? 'sería' : 'serían';
     // Espacio duro antes de «más,»: así nunca queda sola en una línea en el móvil
@@ -197,6 +196,11 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
       : `unos ${formatear(resultado.clientes)} clientes más,`;
     $('dxResDinero').textContent = formatear(resultado.dinero);
     $('dxResDineroLinea').hidden = !resultado.mostrarDinero;
+    // Si el dinero no llega al mínimo, una frase en el mismo bloque destacado
+    $('dxResSinDinero').hidden = resultado.mostrarDinero;
+    $('dxResSinDineroTexto').textContent = respuestas.web === 'si'
+      ? 'Tu web ya trabaja por ti. Con unos ajustes, puede atraer clientes nuevos que todavía no te conocen.'
+      : 'Con tu propia web, podrías atraer clientes nuevos que todavía no te conocen.';
 
     $('dxCarameloObjeto').textContent = BOCETO_SECTOR[respuestas.sector];
     $('dxCarameloNombre').textContent = respuestas.negocio;
@@ -228,7 +232,7 @@ const CONSENTIMIENTO_VERSION = '2026-10-06';
       horas_mes: String(resultado.horas),
       consultas_fuera: String(resultado.consultas),
       clientes_mes: String(resultado.clientes),
-      euros_mes: resultado.mostrarDinero ? String(resultado.dinero) : '(no se mostró: 0 clientes)',
+      euros_mes: resultado.mostrarDinero ? String(resultado.dinero) : `${resultado.dinero} (no se mostró: menos de ${MINIMO_EUROS} €)`,
     };
   }
 
