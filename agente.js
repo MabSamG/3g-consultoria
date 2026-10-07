@@ -32,8 +32,27 @@
       .normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // quita tildes
   }
 
+  // Versión "fonética" para tolerar faltas típicas: el mensaje y las
+  // keywords pasan por la misma transformación, así que "kuanto kuesta
+  // la paxina" coincide con "cuanto cuesta la pagina".
+  function fonetica(str){
+    return normalize(str)
+      .replace(/h/g, "")
+      .replace(/ll/g, "y")
+      .replace(/v/g, "b")
+      .replace(/z/g, "s")
+      .replace(/c([ei])/g, "s$1")
+      .replace(/qu([ei])/g, "k$1")
+      .replace(/c/g, "k")
+      .replace(/g([ei])/g, "j$1")
+      .replace(/x/g, "j")
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
+  }
+
   function findBestFaq(userText){
-    const text = normalize(userText);
+    // Espacios alrededor para buscar palabras completas ("hora" no salta con "ahora")
+    const text = ` ${fonetica(userText)} `;
 
     function bestMatchIn(list){
       let best = null;
@@ -41,7 +60,9 @@
       list.forEach(faq => {
         let score = 0;
         (faq.keywords || []).forEach(kw => {
-          if(text.includes(normalize(kw))) score += 1;
+          const k = fonetica(kw);
+          // Las frases pesan tanto como palabras tienen: "pagar a plazos" gana a "plazos"
+          if(k && text.includes(` ${k} `)) score += k.split(" ").length;
         });
         if(score > bestScore){
           bestScore = score;
@@ -278,6 +299,8 @@
       // mensaje del cliente ya está pidiendo ver las opciones.
       if(faq.showOptions){
         addChips(cfg.sugerenciasIniciales || [], { showWhatsapp: false });
+      } else if(faq.showWhatsapp){
+        addChips([], { showWhatsapp: true });
       }
     } else {
       // Sin coincidencia: aquí sí ayudamos con sugerencias y WhatsApp.
